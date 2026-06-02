@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { FlashList } from '@shopify/flash-list';
+import { Image } from 'expo-image';
 import { useTheme } from '../../context/ThemeContext';
 import { useGetPostsQuery } from '../../store/apiSlice';
 import { useAppDispatch, useAppSelector } from '../../store';
@@ -28,21 +29,32 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
         style={[styles.card, { backgroundColor: theme.card, borderColor: theme.cardBorder }]}
         onPress={() => navigation.navigate('Details', { itemId: item.id.toString(), title: item.title, desc: item.body })}
       >
-        <View style={styles.cardHeader}>
-          <Text style={[styles.cardTitle, { color: theme.primary, flex: 1 }]} numberOfLines={1}>{item.title}</Text>
-          <TouchableOpacity 
-            style={{ padding: 6, marginLeft: 8 }} 
-            onPress={(e) => {
-              e.stopPropagation();
-              dispatch(toggleLikePost(item.id));
-            }}
-          >
-            <Text style={{ fontSize: 20, color: isLiked ? '#F59E0B' : theme.textMuted }}>
-              {isLiked ? '★' : '☆'}
-            </Text>
-          </TouchableOpacity>
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <Image
+            source={{ uri: `https://picsum.photos/id/${((item.id * 7) % 70) + 10}/160/160` }}
+            style={styles.cardImage}
+            contentFit="cover"
+            transition={300}
+            cachePolicy="disk"
+          />
+          <View style={{ flex: 1, marginLeft: 12 }}>
+            <View style={styles.cardHeader}>
+              <Text style={[styles.cardTitle, { color: theme.primary, flex: 1 }]} numberOfLines={1}>{item.title}</Text>
+              <TouchableOpacity 
+                style={{ padding: 6, marginLeft: 8 }} 
+                onPress={(e) => {
+                  e.stopPropagation();
+                  dispatch(toggleLikePost(item.id));
+                }}
+              >
+                <Text style={{ fontSize: 20, color: isLiked ? '#F59E0B' : theme.textMuted }}>
+                  {isLiked ? '★' : '☆'}
+                </Text>
+              </TouchableOpacity>
+            </View>
+            <Text style={[styles.cardDesc, { color: theme.textMuted }]} numberOfLines={2}>{item.body}</Text>
+          </View>
         </View>
-        <Text style={[styles.cardDesc, { color: theme.textMuted }]} numberOfLines={2}>{item.body}</Text>
       </TouchableOpacity>
     );
   };
@@ -150,15 +162,21 @@ const styles = StyleSheet.create({
   },
   card: {
     borderRadius: 16,
-    padding: 18,
+    padding: 14,
     marginBottom: 16,
     borderWidth: 1,
+  },
+  cardImage: {
+    width: 70,
+    height: 70,
+    borderRadius: 10,
+    backgroundColor: '#E2E8F0',
   },
   cardHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 8,
+    marginBottom: 4,
   },
   cardTitle: {
     fontSize: 18,

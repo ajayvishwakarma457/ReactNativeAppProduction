@@ -18,6 +18,8 @@ This document tracks the current frameworks, libraries, tools, and configuration
 | Package Name | Category | Version | Purpose |
 | :--- | :--- | :--- | :--- |
 | [`react-native-mmkv`](https://github.com/mrousavy/react-native-mmkv) | Storage | `^4.3.1` | Ultra-fast synchronous key-value local storage. |
+| [`expo-image`](https://docs.expo.dev/versions/latest/sdk/image/) | Performance Images | `~56.0.9` | Caching, high-performance image rendering wrapper over SDWebImage and Glide. |
+| [`expo`](https://docs.expo.dev/bare/overview/) | Native Core | `~56.0.0` | Expo SDK core platform adapter modules for React Native autolinking. |
 | [`react-native-nitro-modules`](https://github.com/mrousavy/nitro) | C++ JSI Bridging | `^0.35.9` | C++ bindings enabling ultra-fast performance. |
 | [`react-native-safe-area-context`](https://github.com/th3rdwave/react-native-safe-area-context) | UI / Layout | `^5.5.2` | Context provider for handling safe area notch/insets dynamically. |
 | **React Context API** | State Management | Native (`react`) | Global theme context (`ThemeContext`) with persisted MMKV Light/Dark states. |
