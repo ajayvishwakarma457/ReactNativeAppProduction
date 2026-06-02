@@ -20,6 +20,14 @@ This document tracks the current frameworks, libraries, tools, and configuration
 | [`react-native-mmkv`](https://github.com/mrousavy/react-native-mmkv) | Storage | `^4.3.1` | Ultra-fast synchronous key-value local storage. |
 | [`react-native-nitro-modules`](https://github.com/mrousavy/nitro) | C++ JSI Bridging | `^0.35.9` | C++ bindings enabling ultra-fast performance. |
 | [`react-native-safe-area-context`](https://github.com/th3rdwave/react-native-safe-area-context) | UI / Layout | `^5.5.2` | Context provider for handling safe area notch/insets dynamically. |
+| [`@react-navigation/native`](https://reactnavigation.org/) | Navigation | `^7.2.5` | Core routing and navigation state provider. |
+| [`@react-navigation/native-stack`](https://reactnavigation.org/) | Navigation | `^7.16.0` | Native-based screen navigation stack transitions. |
+| [`@react-navigation/bottom-tabs`](https://reactnavigation.org/) | Navigation | `^7.16.2` | Screen layout organizing bottom-tab buttons. |
+| [`@react-navigation/drawer`](https://reactnavigation.org/) | Navigation | `^7.10.3` | Side collapsible drawer menu interface. |
+| [`react-native-gesture-handler`](https://github.com/software-mansion/react-native-gesture-handler) | Gestures | `^3.0.0` | Declarative gesture recognition library. |
+| [`react-native-reanimated`](https://github.com/software-mansion/react-native-reanimated) | Animation | `^4.4.0` | High performance animation framework (uses NitroModules/JSI). |
+| [`react-native-screens`](https://github.com/software-mansion/react-native-screens) | Performance | `^4.25.2` | Native navigation screen optimization container. |
+| [`react-native-worklets`](https://github.com/chrfalch/react-native-worklets) | Performance | `^0.9.1` | Worklets core integration required by Reanimated v4. |
 | `@react-native/new-app-screen` | Styling / Welcome Screen | `0.85.3` | React Native default boiler template components. |
 
 ---
