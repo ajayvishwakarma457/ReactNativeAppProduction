@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { FlashList } from '@shopify/flash-list';
 import { useTheme } from '../../context/ThemeContext';
 import { useGetPostsQuery } from '../../store/apiSlice';
 import { useAppDispatch, useAppSelector } from '../../store';
@@ -20,8 +21,34 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
   const likedPosts = useAppSelector((state) => state.counter.likedPosts);
   const likesCount = useAppSelector((state) => state.counter.value);
 
-  return (
-    <ScrollView contentContainerStyle={[styles.scrollContainer, { backgroundColor: theme.background }]}>
+  const renderItem = ({ item }: { item: any }) => {
+    const isLiked = likedPosts.includes(item.id);
+    return (
+      <TouchableOpacity
+        style={[styles.card, { backgroundColor: theme.card, borderColor: theme.cardBorder }]}
+        onPress={() => navigation.navigate('Details', { itemId: item.id.toString(), title: item.title, desc: item.body })}
+      >
+        <View style={styles.cardHeader}>
+          <Text style={[styles.cardTitle, { color: theme.primary, flex: 1 }]} numberOfLines={1}>{item.title}</Text>
+          <TouchableOpacity 
+            style={{ padding: 6, marginLeft: 8 }} 
+            onPress={(e) => {
+              e.stopPropagation();
+              dispatch(toggleLikePost(item.id));
+            }}
+          >
+            <Text style={{ fontSize: 20, color: isLiked ? '#F59E0B' : theme.textMuted }}>
+              {isLiked ? '★' : '☆'}
+            </Text>
+          </TouchableOpacity>
+        </View>
+        <Text style={[styles.cardDesc, { color: theme.textMuted }]} numberOfLines={2}>{item.body}</Text>
+      </TouchableOpacity>
+    );
+  };
+
+  const renderHeader = () => (
+    <View>
       <View style={styles.header}>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
           <View style={{ flex: 1, marginRight: 10 }}>
@@ -34,9 +61,27 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
           </View>
         </View>
       </View>
-
       <Text style={styles.sectionLabel}>LATEST LIVE BLOGS (RTK QUERY)</Text>
+    </View>
+  );
 
+  const renderFooter = () => {
+    if (isLoading || error) return null;
+    return (
+      <TouchableOpacity 
+        style={[styles.refreshButton, { backgroundColor: theme.card, borderColor: theme.cardBorder }]} 
+        onPress={refetch}
+        disabled={isFetching}
+      >
+        <Text style={[styles.refreshButtonText, { color: theme.primary }]}>
+          {isFetching ? '⏳ Updating...' : '🔄 Refresh Cache'}
+        </Text>
+      </TouchableOpacity>
+    );
+  };
+
+  return (
+    <View style={[styles.container, { backgroundColor: theme.background }]}>
       {isLoading && (
         <View style={styles.centerContainer}>
           <ActivityIndicator size="large" color={theme.primary} />
@@ -45,62 +90,42 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
       )}
 
       {!isLoading && error && (
-        <View style={[styles.errorCard, { backgroundColor: theme.error + '15', borderColor: theme.error }]}>
-          <Text style={[styles.errorTitle, { color: theme.error }]}>⚠️ Fetching Failed</Text>
-          <Text style={[styles.errorDesc, { color: theme.text }]}>
-            {('message' in (error as any)) ? (error as any).message : 'Something went wrong.'}
-          </Text>
-          <TouchableOpacity style={[styles.retryButton, { backgroundColor: theme.error }]} onPress={refetch}>
-            <Text style={styles.retryButtonText}>Retry Request</Text>
-          </TouchableOpacity>
+        <View style={styles.errorContainer}>
+          {renderHeader()}
+          <View style={[styles.errorCard, { backgroundColor: theme.error + '15', borderColor: theme.error }]}>
+            <Text style={[styles.errorTitle, { color: theme.error }]}>⚠️ Fetching Failed</Text>
+            <Text style={[styles.errorDesc, { color: theme.text }]}>
+              {('message' in (error as any)) ? (error as any).message : 'Something went wrong.'}
+            </Text>
+            <TouchableOpacity style={[styles.retryButton, { backgroundColor: theme.error }]} onPress={refetch}>
+              <Text style={styles.retryButtonText}>Retry Request</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       )}
 
-      {!isLoading && !error && posts?.map((post) => {
-        const isLiked = likedPosts.includes(post.id);
-        return (
-          <TouchableOpacity
-            key={post.id}
-            style={[styles.card, { backgroundColor: theme.card, borderColor: theme.cardBorder }]}
-            onPress={() => navigation.navigate('Details', { itemId: post.id.toString(), title: post.title, desc: post.body })}
-          >
-            <View style={styles.cardHeader}>
-              <Text style={[styles.cardTitle, { color: theme.primary, flex: 1 }]} numberOfLines={1}>{post.title}</Text>
-              <TouchableOpacity 
-                style={{ padding: 6, marginLeft: 8 }} 
-                onPress={(e) => {
-                  e.stopPropagation();
-                  dispatch(toggleLikePost(post.id));
-                }}
-              >
-                <Text style={{ fontSize: 20, color: isLiked ? '#F59E0B' : theme.textMuted }}>
-                  {isLiked ? '★' : '☆'}
-                </Text>
-              </TouchableOpacity>
-            </View>
-            <Text style={[styles.cardDesc, { color: theme.textMuted }]} numberOfLines={2}>{post.body}</Text>
-          </TouchableOpacity>
-        );
-      })}
-
       {!isLoading && !error && (
-        <TouchableOpacity 
-          style={[styles.refreshButton, { backgroundColor: theme.card, borderColor: theme.cardBorder }]} 
-          onPress={refetch}
-          disabled={isFetching}
-        >
-          <Text style={[styles.refreshButtonText, { color: theme.primary }]}>
-            {isFetching ? '⏳ Updating...' : '🔄 Refresh Cache'}
-          </Text>
-        </TouchableOpacity>
+        React.createElement(FlashList as any, {
+          data: posts || [],
+          renderItem: renderItem,
+          estimatedItemSize: 115,
+          ListHeaderComponent: renderHeader,
+          ListFooterComponent: renderFooter,
+          contentContainerStyle: styles.listContentContainer,
+        })
       )}
-    </ScrollView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  scrollContainer: {
-    flexGrow: 1,
+  container: {
+    flex: 1,
+  },
+  listContentContainer: {
+    padding: 16,
+  },
+  errorContainer: {
     padding: 16,
   },
   header: {
@@ -148,6 +173,7 @@ const styles = StyleSheet.create({
     padding: 40,
     alignItems: 'center',
     justifyContent: 'center',
+    flex: 1,
   },
   loadingText: {
     marginTop: 12,
