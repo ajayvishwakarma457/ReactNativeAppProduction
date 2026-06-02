@@ -8,6 +8,8 @@ import { RootNavigator } from './src/navigation/index';
 import { ThemeProvider } from './src/context/ThemeContext';
 import { store } from './src/store';
 import { notificationsService } from './src/services/notifications';
+import { useAppState } from './src/hooks/useAppState';
+import { backgroundTasksService } from './src/services/backgroundTasks';
 
 const linking = {
   prefixes: ['rnp://', 'https://rnp-app.com'],
@@ -33,6 +35,16 @@ const linking = {
 };
 
 function App() {
+  useAppState(
+    () => {
+      backgroundTasksService.executeBackgroundSync();
+    },
+    () => {
+      const syncStatus = backgroundTasksService.getSyncStatus();
+      console.log('[AppState] Resumed. Last sync time:', syncStatus.lastSyncTime);
+    }
+  );
+
   useEffect(() => {
     const setupNotifications = async () => {
       const hasPermission = await notificationsService.requestUserPermission();
