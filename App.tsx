@@ -4,16 +4,19 @@ import { NavigationContainer } from '@react-navigation/native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { ErrorBoundary } from './src/components/ErrorBoundary';
 import { RootNavigator } from './src/navigation/index';
+import { ThemeProvider } from './src/context/ThemeContext';
 
 function App() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
-        <ErrorBoundary>
-          <NavigationContainer>
-            <RootNavigator />
-          </NavigationContainer>
-        </ErrorBoundary>
+        <ThemeProvider>
+          <ErrorBoundary>
+            <NavigationContainer>
+              <RootNavigator />
+            </NavigationContainer>
+          </ErrorBoundary>
+        </ThemeProvider>
       </SafeAreaProvider>
     </GestureHandlerRootView>
   );

@@ -20,6 +20,7 @@ This document tracks the current frameworks, libraries, tools, and configuration
 | [`react-native-mmkv`](https://github.com/mrousavy/react-native-mmkv) | Storage | `^4.3.1` | Ultra-fast synchronous key-value local storage. |
 | [`react-native-nitro-modules`](https://github.com/mrousavy/nitro) | C++ JSI Bridging | `^0.35.9` | C++ bindings enabling ultra-fast performance. |
 | [`react-native-safe-area-context`](https://github.com/th3rdwave/react-native-safe-area-context) | UI / Layout | `^5.5.2` | Context provider for handling safe area notch/insets dynamically. |
+| **React Context API** | State Management | Native (`react`) | Global theme context (`ThemeContext`) with persisted MMKV Light/Dark states. |
 | [`@react-navigation/native`](https://reactnavigation.org/) | Navigation | `^7.2.5` | Core routing and navigation state provider. |
 | [`@react-navigation/native-stack`](https://reactnavigation.org/) | Navigation | `^7.16.0` | Native-based screen navigation stack transitions. |
 | [`@react-navigation/bottom-tabs`](https://reactnavigation.org/) | Navigation | `^7.16.2` | Screen layout organizing bottom-tab buttons. |
