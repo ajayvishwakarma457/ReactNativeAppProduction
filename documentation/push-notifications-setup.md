@@ -72,21 +72,42 @@ iOS uses Apple's APNs to deliver messages. Firebase serves as a gateway to trans
    * **Push Notifications**
    * **Background Modes** (check **Remote notifications** and **Background fetch**).
 
-### Step D: Update AppDelegate
-With React Native 0.85+ and React Native Firebase autolinking, no manual changes are typically required in `AppDelegate.swift` for core messaging. However, ensure `FirebaseApp.configure()` is initialized on startup:
+### Step D: Update AppDelegate.swift
+
+Ensure `FirebaseApp.configure()` is initialized on startup inside `ios/App/AppDelegate.swift`:
 
 ```swift
-import Firebase // Add at the top
+import FirebaseCore // Add at the top
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-  override func application(
+  var window: UIWindow?
+
+  var reactNativeDelegate: ReactNativeDelegate?
+  var reactNativeFactory: RCTReactNativeFactory?
+
+  func application(
     _ application: UIApplication,
-    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
   ) -> Bool {
-    FirebaseApp.configure() // Add this line
-    // ...
-    return super.application(application, didFinishLaunchingWithOptions: launchOptions)
+    FirebaseApp.configure() // Add this line before starting React Native
+    
+    let delegate = ReactNativeDelegate()
+    let factory = RCTReactNativeFactory(delegate: delegate)
+    delegate.dependencyProvider = RCTAppDependencyProvider()
+
+    reactNativeDelegate = delegate
+    reactNativeFactory = factory
+
+    window = UIWindow(frame: UIScreen.main.bounds)
+
+    factory.startReactNative(
+      withModuleName: "App",
+      in: window,
+      launchOptions: launchOptions
+    )
+
+    return true
   }
 }
 ```
