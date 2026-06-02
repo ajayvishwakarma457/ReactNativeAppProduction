@@ -1927,6 +1927,28 @@ PODS:
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
     - Yoga
+  - RNPermissions (5.5.2):
+    - hermes-engine
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-Core-prebuilt
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-ImageManager
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - ReactNativeDependencies
+    - Yoga
   - RNReanimated (4.4.0):
     - hermes-engine
     - RCTRequired
@@ -2200,6 +2222,7 @@ DEPENDENCIES:
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - ReactNativeDependencies (from `../node_modules/react-native/third-party-podspecs/ReactNativeDependencies.podspec`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - RNPermissions (from `../node_modules/react-native-permissions`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNWorklets (from `../node_modules/react-native-worklets`)
@@ -2365,6 +2388,8 @@ EXTERNAL SOURCES:
     :podspec: "../node_modules/react-native/third-party-podspecs/ReactNativeDependencies.podspec"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
+  RNPermissions:
+    :path: "../node_modules/react-native-permissions"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
@@ -2453,11 +2478,12 @@ SPEC CHECKSUMS:
   ReactCommon: 3ec2a55999d296af90c24beb66c8a77dc660d3ef
   ReactNativeDependencies: ca472b597a6d0f6ac949644dbc3d538cad572f0b
   RNGestureHandler: 50877ea6cab4f5491d9603391cdecd6437341f4c
+  RNPermissions: 5aa33becbe3f8ee2995c692e2a8ce6518eea1be1
   RNReanimated: 348c0e2d7ca702d5a01acec9c4ad637f30203d4e
   RNScreens: 032083414633a4d94cbcf08f8ab5019d72d1ba36
   RNWorklets: 4dba1eb7cbfc3e8db49e5cce18a1a471fd2ed696
   Yoga: 77dfa8673de2874e1855002ae59c68b8be9b007b
 
-PODFILE CHECKSUM: 29ed79489f34616bb3352c6923f3ceec395b8e66
+PODFILE CHECKSUM: 7acdc4926cb93d33b468ff7372f9b8202c4ab305
 
 COCOAPODS: 1.16.2

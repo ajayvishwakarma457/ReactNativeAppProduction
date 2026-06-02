@@ -35,6 +35,7 @@ This document tracks the current frameworks, libraries, tools, and configuration
 | [`react-native-reanimated`](https://github.com/software-mansion/react-native-reanimated) | Animation | `^4.4.0` | High performance animation framework (uses NitroModules/JSI). |
 | [`react-native-screens`](https://github.com/software-mansion/react-native-screens) | Performance | `^4.25.2` | Native navigation screen optimization container. |
 | [`react-native-worklets`](https://github.com/chrfalch/react-native-worklets) | Performance | `^0.9.1` | Worklets core integration required by Reanimated v4. |
+| [`react-native-permissions`](https://github.com/zoontek/react-native-permissions) | Native Permissions | `^5.5.2` | Native API to check and request camera, location, notifications access. |
 | `@react-native/new-app-screen` | Styling / Welcome Screen | `0.85.3` | React Native default boiler template components. |
 
 ---

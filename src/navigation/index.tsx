@@ -15,6 +15,7 @@ import { PersistenceScreen } from '../screens/Persistence/PersistenceScreen';
 import { ProfileScreen } from '../screens/Profile/ProfileScreen';
 import { SettingsScreen } from '../screens/Settings/SettingsScreen';
 import { HooksPlaygroundScreen } from '../screens/Hooks/HooksPlaygroundScreen';
+import { PermissionsPlaygroundScreen } from '../screens/Settings/PermissionsPlaygroundScreen';
 
 const Stack = createNativeStackNavigator<HomeStackParamList>();
 const Tab = createBottomTabNavigator<TabParamList>();
@@ -120,6 +121,7 @@ export function RootNavigator() {
       <Drawer.Screen name="MainTabs" component={TabNavigator} options={{ title: 'Main App Flow', drawerLabel: 'Main Application' }} />
       <Drawer.Screen name="HooksPlayground" component={HooksPlaygroundScreen} options={{ title: 'Hooks in Depth', drawerLabel: 'Hooks Playground' }} />
       <Drawer.Screen name="Settings" component={SettingsScreen} options={{ title: 'Settings Panel', drawerLabel: 'Settings' }} />
+      <Drawer.Screen name="PermissionsPlayground" component={PermissionsPlaygroundScreen} options={{ title: 'Platform Permissions', drawerLabel: 'Permissions Panel' }} />
     </Drawer.Navigator>
   );
 }
