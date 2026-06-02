@@ -1,3 +1,9 @@
+import { ReadableStream } from 'web-streams-polyfill';
+
+if (typeof global.ReadableStream === 'undefined') {
+  global.ReadableStream = ReadableStream;
+}
+
 import 'react-native-gesture-handler';
 /**
  * @format
