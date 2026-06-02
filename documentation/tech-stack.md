@@ -24,6 +24,7 @@ This document tracks the current frameworks, libraries, tools, and configuration
 | [`@react-navigation/native-stack`](https://reactnavigation.org/) | Navigation | `^7.16.0` | Native-based screen navigation stack transitions. |
 | [`@react-navigation/bottom-tabs`](https://reactnavigation.org/) | Navigation | `^7.16.2` | Screen layout organizing bottom-tab buttons. |
 | [`@react-navigation/drawer`](https://reactnavigation.org/) | Navigation | `^7.10.3` | Side collapsible drawer menu interface. |
+| [`axios`](https://axios-http.com/) | API / Networking | `^1.7.9` | Promise-based HTTP client for request interceptors and REST API calls. |
 | [`react-native-gesture-handler`](https://github.com/software-mansion/react-native-gesture-handler) | Gestures | `^3.0.0` | Declarative gesture recognition library. |
 | [`react-native-reanimated`](https://github.com/software-mansion/react-native-reanimated) | Animation | `^4.4.0` | High performance animation framework (uses NitroModules/JSI). |
 | [`react-native-screens`](https://github.com/software-mansion/react-native-screens) | Performance | `^4.25.2` | Native navigation screen optimization container. |

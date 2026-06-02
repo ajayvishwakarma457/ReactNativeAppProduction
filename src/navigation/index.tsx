@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, TextInput, ScrollView } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, ScrollView, ActivityIndicator } from 'react-native';
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -7,6 +7,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { getStorage } from '../services/storage';
 import { useMMKVString, useMMKVNumber } from 'react-native-mmkv';
 import { NewAppScreen } from '@react-native/new-app-screen';
+import { apiClient } from '../services/api';
 
 // Root Navigators Types
 export type HomeStackParamList = {
@@ -31,35 +32,80 @@ const Drawer = createDrawerNavigator<DrawerParamList>();
 
 // --- SCREENS ---
 
+interface Post {
+  id: number;
+  title: string;
+  body: string;
+}
+
 // 1. Home Screen (inside Stack)
 function HomeScreen({ navigation }: any) {
-  const sampleItems = [
-    { id: '1', title: 'React Native CLI', desc: 'Powerful bare workflow giving you full control over native platforms.' },
-    { id: '2', title: 'Error Boundaries', desc: 'Gracefully catch rendering exceptions and prevent hard app crashes.' },
-    { id: '3', title: 'MMKV Local Cache', desc: 'Lightning-fast, C++ JSI-backed storage for instant local state sync.' },
-  ];
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchPosts = async () => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const response = await apiClient.get<Post[]>('/posts?_limit=3');
+      setPosts(response.data);
+    } catch (err: any) {
+      setError(err.message || 'Something went wrong while fetching data.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchPosts();
+  }, []);
 
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Welcome to NativeApp</Text>
-        <Text style={styles.headerSubtitle}>Explore the foundation steps of your roadmap.</Text>
+        <Text style={styles.headerSubtitle}>Live API Dashboard powered by Axios Client.</Text>
       </View>
 
-      <Text style={styles.sectionLabel}>LEARNING BLOCKS</Text>
-      {sampleItems.map((item) => (
+      <Text style={styles.sectionLabel}>LATEST LIVE BLOGS (REST API)</Text>
+
+      {isLoading && (
+        <View style={styles.centerContainer}>
+          <ActivityIndicator size="large" color="#38BDF8" />
+          <Text style={styles.loadingText}>Fetching articles...</Text>
+        </View>
+      )}
+
+      {!isLoading && error && (
+        <View style={styles.errorCard}>
+          <Text style={styles.errorTitle}>⚠️ Fetching Failed</Text>
+          <Text style={styles.errorDesc}>{error}</Text>
+          <TouchableOpacity style={styles.retryButton} onPress={fetchPosts}>
+            <Text style={styles.retryButtonText}>Retry Request</Text>
+          </TouchableOpacity>
+        </View>
+      )}
+
+      {!isLoading && !error && posts.map((post) => (
         <TouchableOpacity
-          key={item.id}
+          key={post.id}
           style={styles.card}
-          onPress={() => navigation.navigate('Details', { itemId: item.id, title: item.title, desc: item.desc })}
+          onPress={() => navigation.navigate('Details', { itemId: post.id.toString(), title: post.title, desc: post.body })}
         >
           <View style={styles.cardHeader}>
-            <Text style={styles.cardTitle}>{item.title}</Text>
+            <Text style={styles.cardTitle} numberOfLines={1}>{post.title}</Text>
             <Text style={styles.arrowIcon}>➔</Text>
           </View>
-          <Text style={styles.cardDesc} numberOfLines={2}>{item.desc}</Text>
+          <Text style={styles.cardDesc} numberOfLines={2}>{post.body}</Text>
         </TouchableOpacity>
       ))}
+
+      {!isLoading && !error && (
+        <TouchableOpacity style={styles.refreshButton} onPress={fetchPosts}>
+          <Text style={styles.refreshButtonText}>🔄 Refresh Feed</Text>
+        </TouchableOpacity>
+      )}
     </ScrollView>
   );
 }
@@ -556,5 +602,61 @@ const styles = StyleSheet.create({
   statLabel: {
     fontSize: 12,
     color: '#64748B',
+  },
+  centerContainer: {
+    padding: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  loadingText: {
+    marginTop: 12,
+    color: '#94A3B8',
+    fontSize: 14,
+  },
+  errorCard: {
+    backgroundColor: '#EF444415',
+    borderWidth: 1,
+    borderColor: '#EF4444',
+    borderRadius: 16,
+    padding: 20,
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  errorTitle: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#EF4444',
+    marginBottom: 6,
+  },
+  errorDesc: {
+    fontSize: 14,
+    color: '#E2E8F0',
+    textAlign: 'center',
+    marginBottom: 16,
+  },
+  retryButton: {
+    backgroundColor: '#EF4444',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 8,
+  },
+  retryButtonText: {
+    color: '#FFFFFF',
+    fontWeight: '600',
+  },
+  refreshButton: {
+    backgroundColor: '#1E293B',
+    borderWidth: 1,
+    borderColor: '#334155',
+    borderRadius: 12,
+    paddingVertical: 14,
+    alignItems: 'center',
+    marginTop: 8,
+    marginBottom: 20,
+  },
+  refreshButtonText: {
+    color: '#38BDF8',
+    fontWeight: '600',
+    fontSize: 14,
   },
 });
