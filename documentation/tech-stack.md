@@ -25,6 +25,9 @@ This document tracks the current frameworks, libraries, tools, and configuration
 | [`@react-navigation/bottom-tabs`](https://reactnavigation.org/) | Navigation | `^7.16.2` | Screen layout organizing bottom-tab buttons. |
 | [`@react-navigation/drawer`](https://reactnavigation.org/) | Navigation | `^7.10.3` | Side collapsible drawer menu interface. |
 | [`axios`](https://axios-http.com/) | API / Networking | `^1.7.9` | Promise-based HTTP client for request interceptors and REST API calls. |
+| [`react-hook-form`](https://react-hook-form.com/) | Form State | `^7.54.2` | Performant form state manager minimizing component re-renders. |
+| [`@hookform/resolvers`](https://github.com/react-hook-form/resolvers) | Form State | `^3.10.0` | Bridge resolver mapping Zod schema validation rules to React Hook Form. |
+| [`zod`](https://zod.dev/) | Schema Validation | `^3.23.8` | TypeScript-first schema declaration and validation engine. |
 | [`react-native-gesture-handler`](https://github.com/software-mansion/react-native-gesture-handler) | Gestures | `^3.0.0` | Declarative gesture recognition library. |
 | [`react-native-reanimated`](https://github.com/software-mansion/react-native-reanimated) | Animation | `^4.4.0` | High performance animation framework (uses NitroModules/JSI). |
 | [`react-native-screens`](https://github.com/software-mansion/react-native-screens) | Performance | `^4.25.2` | Native navigation screen optimization container. |

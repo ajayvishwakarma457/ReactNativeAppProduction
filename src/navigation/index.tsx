@@ -8,6 +8,9 @@ import { getStorage } from '../services/storage';
 import { useMMKVString, useMMKVNumber } from 'react-native-mmkv';
 import { NewAppScreen } from '@react-native/new-app-screen';
 import { apiClient } from '../services/api';
+import { useForm, Controller } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
 
 // Root Navigators Types
 export type HomeStackParamList = {
@@ -209,31 +212,182 @@ function PersistenceScreen() {
   );
 }
 
+const profileSchema = z.object({
+  username: z.string()
+    .min(3, { message: 'Username must be at least 3 characters' })
+    .max(20, { message: 'Username must be at most 20 characters' })
+    .regex(/^[a-zA-Z0-9_]+$/, { message: 'Alphanumeric and underscores only' }),
+  email: z.string()
+    .email({ message: 'Please enter a valid email address' }),
+  age: z.coerce.number({ invalid_type_error: 'Age must be a number' })
+    .min(18, { message: 'You must be at least 18 years old' })
+    .max(120, { message: 'Invalid age range' }),
+  password: z.string()
+    .min(8, { message: 'Password must be at least 8 characters' })
+    .regex(/[A-Z]/, { message: 'Must contain at least one uppercase letter' })
+    .regex(/[a-z]/, { message: 'Must contain at least one lowercase letter' })
+    .regex(/[0-9]/, { message: 'Must contain at least one number' }),
+});
+
+type ProfileFormValues = z.infer<typeof profileSchema>;
+
 // 4. Profile Tab Screen
 function ProfileScreen() {
   const storageInstance = getStorage();
-  const [username] = useMMKVString('app.username', storageInstance ?? undefined);
+  const [username, setUsername] = useMMKVString('app.username', storageInstance ?? undefined);
   const [count] = useMMKVNumber('app.counter', storageInstance ?? undefined);
+  const [isEditing, setIsEditing] = useState(false);
+
+  const { control, handleSubmit, formState: { errors }, reset } = useForm<ProfileFormValues>({
+    resolver: zodResolver(profileSchema),
+    defaultValues: {
+      username: username || '',
+      email: '',
+      age: 18,
+      password: '',
+    },
+  });
+
+  const onSubmit = (data: ProfileFormValues) => {
+    // Save to MMKV persistence
+    if (storageInstance) {
+      storageInstance.set('app.username', data.username);
+    } else {
+      setUsername(data.username);
+    }
+    setIsEditing(false);
+    reset({
+      username: data.username,
+      email: '',
+      age: 18,
+      password: '',
+    });
+  };
 
   return (
-    <View style={styles.detailsContainer}>
+    <ScrollView contentContainerStyle={styles.profileScrollContainer}>
       <View style={styles.detailCard}>
-        <Text style={styles.profileAvatar}>👤</Text>
-        <Text style={styles.profileName}>{username || 'Guest User'}</Text>
-        <Text style={styles.profileRole}>Developer</Text>
+        {!isEditing ? (
+          <View style={styles.profileCenter}>
+            <Text style={styles.profileAvatar}>👤</Text>
+            <Text style={styles.profileName}>{username || 'Guest User'}</Text>
+            <Text style={styles.profileRole}>Developer</Text>
 
-        <View style={styles.statsContainer}>
-          <View style={styles.statBox}>
-            <Text style={styles.statNum}>{count ?? 0}</Text>
-            <Text style={styles.statLabel}>Clicks Saved</Text>
+            <View style={styles.statsContainer}>
+              <View style={styles.statBox}>
+                <Text style={styles.statNum}>{count ?? 0}</Text>
+                <Text style={styles.statLabel}>Clicks Saved</Text>
+              </View>
+              <View style={styles.statBox}>
+                <Text style={styles.statNum}>4</Text>
+                <Text style={styles.statLabel}>Completed Pointers</Text>
+              </View>
+            </View>
+
+            <TouchableOpacity style={styles.editProfileButton} onPress={() => setIsEditing(true)}>
+              <Text style={styles.editProfileButtonText}>✏️ Edit Profile</Text>
+            </TouchableOpacity>
           </View>
-          <View style={styles.statBox}>
-            <Text style={styles.statNum}>3</Text>
-            <Text style={styles.statLabel}>Completed Pointers</Text>
+        ) : (
+          <View style={styles.formContainer}>
+            <Text style={styles.formHeaderTitle}>✏️ Edit Profile</Text>
+            
+            {/* Username Input */}
+            <View style={styles.formField}>
+              <Text style={styles.formFieldLabel}>Username</Text>
+              <Controller
+                control={control}
+                name="username"
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <TextInput
+                    style={[styles.formInput, errors.username && styles.inputErrorBorder]}
+                    onBlur={onBlur}
+                    onChangeText={onChange}
+                    value={value}
+                    placeholder="Enter username"
+                    placeholderTextColor="#64748B"
+                  />
+                )}
+              />
+              {errors.username && <Text style={styles.formErrorText}>{errors.username.message}</Text>}
+            </View>
+
+            {/* Email Input */}
+            <View style={styles.formField}>
+              <Text style={styles.formFieldLabel}>Email</Text>
+              <Controller
+                control={control}
+                name="email"
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <TextInput
+                    style={[styles.formInput, errors.email && styles.inputErrorBorder]}
+                    onBlur={onBlur}
+                    onChangeText={onChange}
+                    value={value}
+                    keyboardType="email-address"
+                    autoCapitalize="none"
+                    placeholder="example@domain.com"
+                    placeholderTextColor="#64748B"
+                  />
+                )}
+              />
+              {errors.email && <Text style={styles.formErrorText}>{errors.email.message}</Text>}
+            </View>
+
+            {/* Age Input */}
+            <View style={styles.formField}>
+              <Text style={styles.formFieldLabel}>Age</Text>
+              <Controller
+                control={control}
+                name="age"
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <TextInput
+                    style={[styles.formInput, errors.age && styles.inputErrorBorder]}
+                    onBlur={onBlur}
+                    onChangeText={(val) => onChange(val ? parseInt(val, 10) : '')}
+                    value={value ? value.toString() : ''}
+                    keyboardType="numeric"
+                    placeholder="Enter age (must be >= 18)"
+                    placeholderTextColor="#64748B"
+                  />
+                )}
+              />
+              {errors.age && <Text style={styles.formErrorText}>{errors.age.message}</Text>}
+            </View>
+
+            {/* Password Input */}
+            <View style={styles.formField}>
+              <Text style={styles.formFieldLabel}>Password</Text>
+              <Controller
+                control={control}
+                name="password"
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <TextInput
+                    style={[styles.formInput, errors.password && styles.inputErrorBorder]}
+                    onBlur={onBlur}
+                    onChangeText={onChange}
+                    value={value}
+                    secureTextEntry
+                    placeholder="Min 8 chars, 1 uppercase, 1 number"
+                    placeholderTextColor="#64748B"
+                  />
+                )}
+              />
+              {errors.password && <Text style={styles.formErrorText}>{errors.password.message}</Text>}
+            </View>
+
+            <View style={styles.formActionRow}>
+              <TouchableOpacity style={[styles.formActionButton, styles.cancelBtn]} onPress={() => setIsEditing(false)}>
+                <Text style={styles.cancelBtnText}>Cancel</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={[styles.formActionButton, styles.saveBtn]} onPress={handleSubmit(onSubmit)}>
+                <Text style={styles.saveBtnText}>Save Changes</Text>
+              </TouchableOpacity>
+            </View>
           </View>
-        </View>
+        )}
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
@@ -658,5 +812,98 @@ const styles = StyleSheet.create({
     color: '#38BDF8',
     fontWeight: '600',
     fontSize: 14,
+  },
+  profileScrollContainer: {
+    flexGrow: 1,
+    backgroundColor: '#0F172A',
+    padding: 16,
+    justifyContent: 'center',
+  },
+  profileCenter: {
+    alignItems: 'center',
+    width: '100%',
+  },
+  editProfileButton: {
+    backgroundColor: '#38BDF8',
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    borderRadius: 10,
+    marginTop: 24,
+    width: '100%',
+    alignItems: 'center',
+  },
+  editProfileButtonText: {
+    color: '#0F172A',
+    fontWeight: '700',
+    fontSize: 15,
+  },
+  formContainer: {
+    width: '100%',
+  },
+  formHeaderTitle: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: '#38BDF8',
+    marginBottom: 20,
+    textAlign: 'center',
+  },
+  formField: {
+    marginBottom: 16,
+  },
+  formFieldLabel: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#E2E8F0',
+    marginBottom: 6,
+  },
+  formInput: {
+    height: 48,
+    backgroundColor: '#0F172A',
+    borderRadius: 8,
+    paddingHorizontal: 12,
+    color: '#F8FAFC',
+    fontSize: 15,
+    borderWidth: 1,
+    borderColor: '#334155',
+  },
+  inputErrorBorder: {
+    borderColor: '#EF4444',
+  },
+  formErrorText: {
+    color: '#EF4444',
+    fontSize: 12,
+    marginTop: 4,
+    fontWeight: '500',
+  },
+  formActionRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 20,
+  },
+  formActionButton: {
+    flex: 1,
+    height: 48,
+    borderRadius: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  cancelBtn: {
+    marginRight: 10,
+    borderWidth: 1,
+    borderColor: '#64748B',
+  },
+  cancelBtnText: {
+    color: '#94A3B8',
+    fontWeight: '600',
+    fontSize: 15,
+  },
+  saveBtn: {
+    marginLeft: 10,
+    backgroundColor: '#38BDF8',
+  },
+  saveBtnText: {
+    color: '#0F172A',
+    fontWeight: '700',
+    fontSize: 15,
   },
 });
