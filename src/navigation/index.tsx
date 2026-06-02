@@ -12,6 +12,9 @@ import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { useTheme } from '../context/ThemeContext';
+import { useGetPostsQuery } from '../store/apiSlice';
+import { useAppDispatch, useAppSelector } from '../store';
+import { toggleLikePost } from '../store/counterSlice';
 
 // Root Navigators Types
 export type HomeStackParamList = {
@@ -37,44 +40,34 @@ const Drawer = createDrawerNavigator<DrawerParamList>();
 
 // --- SCREENS ---
 
-interface Post {
-  id: number;
-  title: string;
-  body: string;
-}
-
 // 1. Home Screen (inside Stack)
 function HomeScreen({ navigation }: any) {
   const { theme } = useTheme();
-  const [posts, setPosts] = useState<Post[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  const fetchPosts = async () => {
-    setIsLoading(true);
-    setError(null);
-    try {
-      const response = await apiClient.get<Post[]>('/posts?_limit=3');
-      setPosts(response.data);
-    } catch (err: any) {
-      setError(err.message || 'Something went wrong while fetching data.');
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchPosts();
-  }, []);
+  
+  // RTK Query API Hook call
+  const { data: posts, error, isLoading, isFetching, refetch } = useGetPostsQuery(3);
+  
+  // Redux store selections & dispatch
+  const dispatch = useAppDispatch();
+  const likedPosts = useAppSelector((state) => state.counter.likedPosts);
+  const likesCount = useAppSelector((state) => state.counter.value);
 
   return (
     <ScrollView contentContainerStyle={[styles.scrollContainer, { backgroundColor: theme.background }]}>
       <View style={styles.header}>
-        <Text style={[styles.headerTitle, { color: theme.text }]}>Welcome to NativeApp</Text>
-        <Text style={[styles.headerSubtitle, { color: theme.textMuted }]}>Live API Dashboard powered by Axios Client.</Text>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+          <View style={{ flex: 1, marginRight: 10 }}>
+            <Text style={[styles.headerTitle, { color: theme.text }]}>Welcome to NativeApp</Text>
+            <Text style={[styles.headerSubtitle, { color: theme.textMuted }]}>API Cache & State powered by Redux + RTK Query.</Text>
+          </View>
+          <View style={{ backgroundColor: theme.primary + '15', borderColor: theme.primary, borderWidth: 1, borderRadius: 12, paddingVertical: 8, paddingHorizontal: 12, alignItems: 'center' }}>
+            <Text style={{ fontSize: 18, fontWeight: '800', color: theme.primary }}>⭐ {likesCount}</Text>
+            <Text style={{ fontSize: 9, color: theme.textMuted, marginTop: 2, fontWeight: '700' }}>BOOKMARKS</Text>
+          </View>
+        </View>
       </View>
 
-      <Text style={styles.sectionLabel}>LATEST LIVE BLOGS (REST API)</Text>
+      <Text style={styles.sectionLabel}>LATEST LIVE BLOGS (RTK QUERY)</Text>
 
       {isLoading && (
         <View style={styles.centerContainer}>
@@ -86,30 +79,51 @@ function HomeScreen({ navigation }: any) {
       {!isLoading && error && (
         <View style={[styles.errorCard, { backgroundColor: theme.error + '15', borderColor: theme.error }]}>
           <Text style={[styles.errorTitle, { color: theme.error }]}>⚠️ Fetching Failed</Text>
-          <Text style={[styles.errorDesc, { color: theme.text }]}>{error}</Text>
-          <TouchableOpacity style={[styles.retryButton, { backgroundColor: theme.error }]} onPress={fetchPosts}>
+          <Text style={[styles.errorDesc, { color: theme.text }]}>
+            {('message' in (error as any)) ? (error as any).message : 'Something went wrong.'}
+          </Text>
+          <TouchableOpacity style={[styles.retryButton, { backgroundColor: theme.error }]} onPress={refetch}>
             <Text style={styles.retryButtonText}>Retry Request</Text>
           </TouchableOpacity>
         </View>
       )}
 
-      {!isLoading && !error && posts.map((post) => (
-        <TouchableOpacity
-          key={post.id}
-          style={[styles.card, { backgroundColor: theme.card, borderColor: theme.cardBorder }]}
-          onPress={() => navigation.navigate('Details', { itemId: post.id.toString(), title: post.title, desc: post.body })}
-        >
-          <View style={styles.cardHeader}>
-            <Text style={[styles.cardTitle, { color: theme.primary }]} numberOfLines={1}>{post.title}</Text>
-            <Text style={[styles.arrowIcon, { color: theme.primary }]}>➔</Text>
-          </View>
-          <Text style={[styles.cardDesc, { color: theme.textMuted }]} numberOfLines={2}>{post.body}</Text>
-        </TouchableOpacity>
-      ))}
+      {!isLoading && !error && posts?.map((post) => {
+        const isLiked = likedPosts.includes(post.id);
+        return (
+          <TouchableOpacity
+            key={post.id}
+            style={[styles.card, { backgroundColor: theme.card, borderColor: theme.cardBorder }]}
+            onPress={() => navigation.navigate('Details', { itemId: post.id.toString(), title: post.title, desc: post.body })}
+          >
+            <View style={styles.cardHeader}>
+              <Text style={[styles.cardTitle, { color: theme.primary, flex: 1 }]} numberOfLines={1}>{post.title}</Text>
+              <TouchableOpacity 
+                style={{ padding: 6, marginLeft: 8 }} 
+                onPress={(e) => {
+                  e.stopPropagation();
+                  dispatch(toggleLikePost(post.id));
+                }}
+              >
+                <Text style={{ fontSize: 20, color: isLiked ? '#F59E0B' : theme.textMuted }}>
+                  {isLiked ? '★' : '☆'}
+                </Text>
+              </TouchableOpacity>
+            </View>
+            <Text style={[styles.cardDesc, { color: theme.textMuted }]} numberOfLines={2}>{post.body}</Text>
+          </TouchableOpacity>
+        );
+      })}
 
       {!isLoading && !error && (
-        <TouchableOpacity style={[styles.refreshButton, { backgroundColor: theme.card, borderColor: theme.cardBorder }]} onPress={fetchPosts}>
-          <Text style={[styles.refreshButtonText, { color: theme.primary }]}>🔄 Refresh Feed</Text>
+        <TouchableOpacity 
+          style={[styles.refreshButton, { backgroundColor: theme.card, borderColor: theme.cardBorder }]} 
+          onPress={refetch}
+          disabled={isFetching}
+        >
+          <Text style={[styles.refreshButtonText, { color: theme.primary }]}>
+            {isFetching ? '⏳ Updating...' : '🔄 Refresh Cache'}
+          </Text>
         </TouchableOpacity>
       )}
     </ScrollView>
@@ -120,11 +134,27 @@ function HomeScreen({ navigation }: any) {
 function DetailsScreen({ route, navigation }: any) {
   const { theme } = useTheme();
   const { itemId, title, desc } = route.params;
+  const dispatch = useAppDispatch();
+  const idNumber = parseInt(itemId, 10);
+  
+  const likedPosts = useAppSelector((state) => state.counter.likedPosts);
+  const isLiked = likedPosts.includes(idNumber);
 
   return (
     <View style={[styles.detailsContainer, { backgroundColor: theme.background }]}>
       <View style={[styles.detailCard, { backgroundColor: theme.card, borderColor: theme.cardBorder }]}>
-        <Text style={[styles.detailTag, { color: theme.primary, backgroundColor: theme.primary + '15' }]}>BLOCK #{itemId}</Text>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: '100%', marginBottom: 12 }}>
+          <Text style={[styles.detailTag, { color: theme.primary, backgroundColor: theme.primary + '15', marginBottom: 0 }]}>BLOCK #{itemId}</Text>
+          <TouchableOpacity 
+            style={{ padding: 6 }} 
+            onPress={() => dispatch(toggleLikePost(idNumber))}
+          >
+            <Text style={{ fontSize: 24, color: isLiked ? '#F59E0B' : theme.textMuted }}>
+              {isLiked ? '★ Bookmarked' : '☆ Bookmark'}
+            </Text>
+          </TouchableOpacity>
+        </View>
+
         <Text style={[styles.detailTitle, { color: theme.text }]}>{title}</Text>
         <Text style={[styles.detailDesc, { color: theme.textMuted }]}>{desc}</Text>
         
