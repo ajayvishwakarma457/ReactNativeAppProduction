@@ -17,6 +17,8 @@ try {
       appId: '1:1234567890:ios:1234567890',
       projectId: 'mock-project-id',
       messagingSenderId: '1234567890',
+      databaseURL: 'https://mock-project-id.firebaseio.com',
+      storageBucket: 'mock-project-id.appspot.com',
     });
   }
 } catch (error) {
