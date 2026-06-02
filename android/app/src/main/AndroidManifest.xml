@@ -26,6 +26,24 @@
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
+
+        <!-- Custom URL Scheme rnp:// -->
+        <intent-filter android:label="@string/app_name">
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="rnp" />
+        </intent-filter>
+
+        <!-- App Links https://rnp-app.com -->
+        <intent-filter android:autoVerify="true">
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="http" />
+            <data android:scheme="https" />
+            <data android:host="rnp-app.com" />
+        </intent-filter>
       </activity>
     </application>
 </manifest>

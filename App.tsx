@@ -9,6 +9,29 @@ import { ThemeProvider } from './src/context/ThemeContext';
 import { store } from './src/store';
 import { notificationsService } from './src/services/notifications';
 
+const linking = {
+  prefixes: ['rnp://', 'https://rnp-app.com'],
+  config: {
+    screens: {
+      MainTabs: {
+        screens: {
+          HomeStack: {
+            screens: {
+              Home: 'home',
+              Details: 'details/:title',
+            },
+          },
+          Persistence: 'persistence',
+          Profile: 'profile',
+        },
+      },
+      HooksPlayground: 'hooks',
+      Settings: 'settings',
+      PermissionsPlayground: 'permissions',
+    },
+  },
+};
+
 function App() {
   useEffect(() => {
     const setupNotifications = async () => {
@@ -32,7 +55,7 @@ function App() {
         <SafeAreaProvider>
           <ThemeProvider>
             <ErrorBoundary>
-              <NavigationContainer>
+              <NavigationContainer linking={linking as any}>
                 <RootNavigator />
               </NavigationContainer>
             </ErrorBoundary>
