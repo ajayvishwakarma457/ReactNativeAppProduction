@@ -13,7 +13,7 @@ import { name as appName } from './app.json';
 try {
   if (!firebase.apps.length) {
     firebase.initializeApp({
-      apiKey: 'mock-api-key-for-local-playground-only',
+      apiKey: 'AIzaSyA1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q',
       appId: '1:1234567890:ios:1234567890',
       projectId: 'mock-project-id',
       messagingSenderId: '1234567890',
