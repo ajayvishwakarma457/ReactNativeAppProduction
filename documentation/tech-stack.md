@@ -23,6 +23,8 @@ This document tracks the current frameworks, libraries, tools, and configuration
 | **React Context API** | State Management | Native (`react`) | Global theme context (`ThemeContext`) with persisted MMKV Light/Dark states. |
 | [`@reduxjs/toolkit`](https://redux-toolkit.js.org/) | State Management | `^2.6.0` | Global state management (includes RTK Query for data fetching and caching). |
 | [`react-redux`](https://react-redux.js.org/) | State Management | `^9.2.0` | React bindings for Redux. |
+| [`@react-native-firebase/app`](https://rnfirebase.io/) | Notifications / Cloud | `^24.0.0` | React Native Firebase core application manager. |
+| [`@react-native-firebase/messaging`](https://rnfirebase.io/messaging/usage) | Push Notifications | `^24.0.0` | React Native Firebase cloud messaging hooks and listeners. |
 | [`@react-navigation/native`](https://reactnavigation.org/) | Navigation | `^7.2.5` | Core routing and navigation state provider. |
 | [`@react-navigation/native-stack`](https://reactnavigation.org/) | Navigation | `^7.16.0` | Native-based screen navigation stack transitions. |
 | [`@react-navigation/bottom-tabs`](https://reactnavigation.org/) | Navigation | `^7.16.2` | Screen layout organizing bottom-tab buttons. |

@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",
+    "@react-native-firebase/app": "^24.0.0",
+    "@react-native-firebase/messaging": "^24.0.0",
     "@react-native/new-app-screen": "0.85.3",
     "@react-navigation/bottom-tabs": "^7.16.2",
     "@react-navigation/drawer": "^7.10.3",
