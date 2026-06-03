@@ -16,4 +16,5 @@ export interface DrawerParamList extends ParamListBase {
   Settings: undefined;
   HooksPlayground: undefined;
   PermissionsPlayground: undefined;
+  APIsPlayground: undefined;
 }

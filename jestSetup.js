@@ -148,3 +148,53 @@ jest.mock('react-native-config', () => {
     APP_ENV: 'test',
   };
 });
+
+// Mock @apollo/client
+jest.mock('@apollo/client', () => {
+  return {
+    ApolloClient: jest.fn().mockImplementation(() => ({
+      query: jest.fn(() => Promise.resolve({ data: {} })),
+    })),
+    InMemoryCache: jest.fn(),
+    HttpLink: jest.fn().mockImplementation(() => ({})),
+    gql: (strings) => strings[0],
+  };
+});
+
+// Mock @apollo/client/react
+jest.mock('@apollo/client/react', () => {
+  const React = require('react');
+  return {
+    ApolloProvider: ({ children }) => <>{children}</>,
+    useQuery: jest.fn(() => ({
+      data: {
+        characters: {
+          results: [
+            { id: '1', name: 'Mock Rick', species: 'Human', status: 'Alive', image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg' }
+          ]
+        }
+      },
+      loading: false,
+      error: null,
+      refetch: jest.fn(),
+    })),
+  };
+});
+
+// Mock global WebSocket class for Node environment
+global.WebSocket = class MockWebSocket {
+  constructor(url) {
+    this.url = url;
+    setTimeout(() => {
+      if (this.onopen) this.onopen();
+    }, 0);
+  }
+  send(data) {
+    setTimeout(() => {
+      if (this.onmessage) this.onmessage({ data: `Echo: ${data}` });
+    }, 0);
+  }
+  close() {
+    if (this.onclose) this.onclose();
+  }
+};

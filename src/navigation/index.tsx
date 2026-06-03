@@ -16,6 +16,7 @@ import { ProfileScreen } from '../screens/Profile/ProfileScreen';
 import { SettingsScreen } from '../screens/Settings/SettingsScreen';
 import { HooksPlaygroundScreen } from '../screens/Hooks/HooksPlaygroundScreen';
 import { PermissionsPlaygroundScreen } from '../screens/Settings/PermissionsPlaygroundScreen';
+import { APIsPlaygroundScreen } from '../screens/Home/APIsPlaygroundScreen';
 
 const Stack = createNativeStackNavigator<HomeStackParamList>();
 const Tab = createBottomTabNavigator<TabParamList>();
@@ -122,6 +123,7 @@ export function RootNavigator() {
       <Drawer.Screen name="HooksPlayground" component={HooksPlaygroundScreen} options={{ title: 'Hooks in Depth', drawerLabel: 'Hooks Playground' }} />
       <Drawer.Screen name="Settings" component={SettingsScreen} options={{ title: 'Settings Panel', drawerLabel: 'Settings' }} />
       <Drawer.Screen name="PermissionsPlayground" component={PermissionsPlaygroundScreen} options={{ title: 'Platform Permissions', drawerLabel: 'Permissions Panel' }} />
+      <Drawer.Screen name="APIsPlayground" component={APIsPlaygroundScreen} options={{ title: 'APIs & Networking', drawerLabel: 'APIs Playground' }} />
     </Drawer.Navigator>
   );
 }
