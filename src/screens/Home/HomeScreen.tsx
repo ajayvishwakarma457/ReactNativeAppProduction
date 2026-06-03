@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { FlashList } from '@shopify/flash-list';
 import { Image } from 'expo-image';
@@ -6,6 +6,53 @@ import { useTheme } from '../../context/ThemeContext';
 import { useGetPostsQuery } from '../../store/apiSlice';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { toggleLikePost } from '../../store/counterSlice';
+
+export interface PostCardProps {
+  item: any;
+  theme: any;
+  isLiked: boolean;
+  onPress: (item: any) => void;
+  onLikePress: (id: number) => void;
+}
+
+const PostCard = React.memo(({ item, theme, isLiked, onPress, onLikePress }: PostCardProps) => {
+  const handlePress = () => onPress(item);
+  const handleLikePress = (e: any) => {
+    e.stopPropagation();
+    onLikePress(item.id);
+  };
+
+  return (
+    <TouchableOpacity
+      style={[styles.card, { backgroundColor: theme.card, borderColor: theme.cardBorder }]}
+      onPress={handlePress}
+    >
+      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        <Image
+          source={{ uri: `https://picsum.photos/id/${((item.id * 7) % 70) + 10}/160/160` }}
+          style={styles.cardImage}
+          contentFit="cover"
+          transition={300}
+          cachePolicy="disk"
+        />
+        <View style={{ flex: 1, marginLeft: 12 }}>
+          <View style={styles.cardHeader}>
+            <Text style={[styles.cardTitle, { color: theme.primary, flex: 1 }]} numberOfLines={1}>{item.title}</Text>
+            <TouchableOpacity 
+              style={{ padding: 6, marginLeft: 8 }} 
+              onPress={handleLikePress}
+            >
+              <Text style={{ fontSize: 20, color: isLiked ? '#F59E0B' : theme.textMuted }}>
+                {isLiked ? '★' : '☆'}
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <Text style={[styles.cardDesc, { color: theme.textMuted }]} numberOfLines={2}>{item.body}</Text>
+        </View>
+      </View>
+    </TouchableOpacity>
+  );
+});
 
 interface HomeScreenProps {
   navigation: any;
@@ -22,42 +69,26 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
   const likedPosts = useAppSelector((state) => state.counter.likedPosts);
   const likesCount = useAppSelector((state) => state.counter.value);
 
-  const renderItem = ({ item }: { item: any }) => {
+  const handlePress = useCallback((item: any) => {
+    navigation.navigate('Details', { itemId: item.id.toString(), title: item.title, desc: item.body });
+  }, [navigation]);
+
+  const handleLikePress = useCallback((id: number) => {
+    dispatch(toggleLikePost(id));
+  }, [dispatch]);
+
+  const renderItem = useCallback(({ item }: { item: any }) => {
     const isLiked = likedPosts.includes(item.id);
     return (
-      <TouchableOpacity
-        style={[styles.card, { backgroundColor: theme.card, borderColor: theme.cardBorder }]}
-        onPress={() => navigation.navigate('Details', { itemId: item.id.toString(), title: item.title, desc: item.body })}
-      >
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <Image
-            source={{ uri: `https://picsum.photos/id/${((item.id * 7) % 70) + 10}/160/160` }}
-            style={styles.cardImage}
-            contentFit="cover"
-            transition={300}
-            cachePolicy="disk"
-          />
-          <View style={{ flex: 1, marginLeft: 12 }}>
-            <View style={styles.cardHeader}>
-              <Text style={[styles.cardTitle, { color: theme.primary, flex: 1 }]} numberOfLines={1}>{item.title}</Text>
-              <TouchableOpacity 
-                style={{ padding: 6, marginLeft: 8 }} 
-                onPress={(e) => {
-                  e.stopPropagation();
-                  dispatch(toggleLikePost(item.id));
-                }}
-              >
-                <Text style={{ fontSize: 20, color: isLiked ? '#F59E0B' : theme.textMuted }}>
-                  {isLiked ? '★' : '☆'}
-                </Text>
-              </TouchableOpacity>
-            </View>
-            <Text style={[styles.cardDesc, { color: theme.textMuted }]} numberOfLines={2}>{item.body}</Text>
-          </View>
-        </View>
-      </TouchableOpacity>
+      <PostCard
+        item={item}
+        theme={theme}
+        isLiked={isLiked}
+        onPress={handlePress}
+        onLikePress={handleLikePress}
+      />
     );
-  };
+  }, [theme, likedPosts, handlePress, handleLikePress]);
 
   const renderHeader = () => (
     <View>
