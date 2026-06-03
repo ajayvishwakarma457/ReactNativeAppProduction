@@ -6,6 +6,9 @@ import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { useTheme } from '../../../shared/context/ThemeContext';
+import { AppText } from '../../../shared/components/atoms/AppText';
+import { AppButton } from '../../../shared/components/atoms/AppButton';
+import { FormField } from '../../../shared/components/molecules/FormField';
 
 const profileSchema = z.object({
   username: z.string()
@@ -69,120 +72,111 @@ export const ProfileScreen: React.FC = () => {
       <View style={[styles.detailCard, { backgroundColor: theme.card, borderColor: theme.cardBorder }]}>
         {!isEditing ? (
           <View style={styles.profileCenter}>
-            <Text style={styles.profileAvatar}>👤</Text>
-            <Text style={[styles.profileName, { color: theme.text }]}>{username || 'Guest User'}</Text>
-            <Text style={[styles.profileRole, { color: theme.primary }]}>Developer</Text>
+            <AppText style={styles.profileAvatar}>👤</AppText>
+            <AppText variant="title" style={styles.profileName}>{username || 'Guest User'}</AppText>
+            <AppText variant="bold" colorType="primary" style={styles.profileRole}>Developer</AppText>
 
             <View style={styles.statsContainer}>
               <View style={styles.statBox}>
-                <Text style={[styles.statNum, { color: theme.text }]}>{count ?? 0}</Text>
-                <Text style={[styles.statLabel, { color: theme.textMuted }]}>Clicks Saved</Text>
+                <AppText variant="title">{count ?? 0}</AppText>
+                <AppText variant="caption" colorType="muted">Clicks Saved</AppText>
               </View>
               <View style={styles.statBox}>
-                <Text style={[styles.statNum, { color: theme.text }]}>5</Text>
-                <Text style={[styles.statLabel, { color: theme.textMuted }]}>Completed Pointers</Text>
+                <AppText variant="title">5</AppText>
+                <AppText variant="caption" colorType="muted">Completed Pointers</AppText>
               </View>
             </View>
 
-            <TouchableOpacity style={[styles.editProfileButton, { backgroundColor: theme.primary }]} onPress={() => setIsEditing(true)}>
-              <Text style={[styles.editProfileButtonText, { color: theme.background }]}>✏️ Edit Profile</Text>
-            </TouchableOpacity>
+            <AppButton
+              style={{ marginTop: 24 }}
+              title="✏️ Edit Profile"
+              onPress={() => setIsEditing(true)}
+            />
           </View>
         ) : (
           <View style={styles.formContainer}>
-            <Text style={[styles.formHeaderTitle, { color: theme.primary }]}>✏️ Edit Profile</Text>
+            <AppText variant="title" colorType="primary" style={styles.formHeaderTitle}>✏️ Edit Profile</AppText>
             
             {/* Username Input */}
-            <View style={styles.formField}>
-              <Text style={[styles.formFieldLabel, { color: theme.text }]}>Username</Text>
-              <Controller
-                control={control}
-                name="username"
-                render={({ field: { onChange, onBlur, value } }) => (
-                  <TextInput
-                    style={[styles.formInput, { backgroundColor: theme.background, color: theme.text, borderColor: theme.cardBorder }, errors.username && styles.inputErrorBorder]}
-                    onBlur={onBlur}
-                    onChangeText={onChange}
-                    value={value}
-                    placeholder="Enter username"
-                    placeholderTextColor={theme.textMuted}
-                  />
-                )}
-              />
-              {errors.username && <Text style={[styles.formErrorText, { color: theme.error }]}>{errors.username.message}</Text>}
-            </View>
+            <Controller
+              control={control}
+              name="username"
+              render={({ field: { onChange, onBlur, value } }) => (
+                <FormField
+                  label="Username"
+                  onBlur={onBlur}
+                  onChangeText={onChange}
+                  value={value}
+                  placeholder="Enter username"
+                  error={errors.username?.message}
+                />
+              )}
+            />
 
             {/* Email Input */}
-            <View style={styles.formField}>
-              <Text style={[styles.formFieldLabel, { color: theme.text }]}>Email</Text>
-              <Controller
-                control={control}
-                name="email"
-                render={({ field: { onChange, onBlur, value } }) => (
-                  <TextInput
-                    style={[styles.formInput, { backgroundColor: theme.background, color: theme.text, borderColor: theme.cardBorder }, errors.email && styles.inputErrorBorder]}
-                    onBlur={onBlur}
-                    onChangeText={onChange}
-                    value={value}
-                    keyboardType="email-address"
-                    autoCapitalize="none"
-                    placeholder="example@domain.com"
-                    placeholderTextColor={theme.textMuted}
-                  />
-                )}
-              />
-              {errors.email && <Text style={[styles.formErrorText, { color: theme.error }]}>{errors.email.message}</Text>}
-            </View>
+            <Controller
+              control={control}
+              name="email"
+              render={({ field: { onChange, onBlur, value } }) => (
+                <FormField
+                  label="Email"
+                  onBlur={onBlur}
+                  onChangeText={onChange}
+                  value={value}
+                  keyboardType="email-address"
+                  autoCapitalize="none"
+                  placeholder="example@domain.com"
+                  error={errors.email?.message}
+                />
+              )}
+            />
 
             {/* Age Input */}
-            <View style={styles.formField}>
-              <Text style={[styles.formFieldLabel, { color: theme.text }]}>Age</Text>
-              <Controller
-                control={control}
-                name="age"
-                render={({ field: { onChange, onBlur, value } }) => (
-                  <TextInput
-                    style={[styles.formInput, { backgroundColor: theme.background, color: theme.text, borderColor: theme.cardBorder }, errors.age && styles.inputErrorBorder]}
-                    onBlur={onBlur}
-                    onChangeText={(val) => onChange(val ? parseInt(val, 10) : 0)}
-                    value={value ? value.toString() : ''}
-                    keyboardType="numeric"
-                    placeholder="Enter age (must be >= 18)"
-                    placeholderTextColor={theme.textMuted}
-                  />
-                )}
-              />
-              {errors.age && <Text style={[styles.formErrorText, { color: theme.error }]}>{errors.age.message}</Text>}
-            </View>
+            <Controller
+              control={control}
+              name="age"
+              render={({ field: { onChange, onBlur, value } }) => (
+                <FormField
+                  label="Age"
+                  onBlur={onBlur}
+                  onChangeText={(val) => onChange(val ? parseInt(val, 10) : 0)}
+                  value={value ? value.toString() : ''}
+                  keyboardType="numeric"
+                  placeholder="Enter age (must be >= 18)"
+                  error={errors.age?.message}
+                />
+              )}
+            />
 
             {/* Password Input */}
-            <View style={styles.formField}>
-              <Text style={[styles.formFieldLabel, { color: theme.text }]}>Password</Text>
-              <Controller
-                control={control}
-                name="password"
-                render={({ field: { onChange, onBlur, value } }) => (
-                  <TextInput
-                    style={[styles.formInput, { backgroundColor: theme.background, color: theme.text, borderColor: theme.cardBorder }, errors.password && styles.inputErrorBorder]}
-                    onBlur={onBlur}
-                    onChangeText={onChange}
-                    value={value || ''}
-                    secureTextEntry
-                    placeholder="Min 8 chars, 1 uppercase, 1 number"
-                    placeholderTextColor={theme.textMuted}
-                  />
-                )}
-              />
-              {errors.password && <Text style={[styles.formErrorText, { color: theme.error }]}>{errors.password.message}</Text>}
-            </View>
+            <Controller
+              control={control}
+              name="password"
+              render={({ field: { onChange, onBlur, value } }) => (
+                <FormField
+                  label="Password"
+                  onBlur={onBlur}
+                  onChangeText={onChange}
+                  value={value || ''}
+                  secureTextEntry
+                  placeholder="Min 8 chars, 1 uppercase, 1 number"
+                  error={errors.password?.message}
+                />
+              )}
+            />
 
             <View style={styles.formActionRow}>
-              <TouchableOpacity style={[styles.formActionButton, styles.cancelBtn, { borderColor: theme.textMuted }]} onPress={() => setIsEditing(false)}>
-                <Text style={[styles.cancelBtnText, { color: theme.textMuted }]}>Cancel</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={[styles.formActionButton, styles.saveBtn, { backgroundColor: theme.primary }]} onPress={handleSubmit(onSubmit)}>
-                <Text style={[styles.saveBtnText, { color: theme.background }]}>Save Changes</Text>
-              </TouchableOpacity>
+              <AppButton
+                style={{ flex: 1, marginRight: 10 }}
+                variant="outline"
+                title="Cancel"
+                onPress={() => setIsEditing(false)}
+              />
+              <AppButton
+                style={{ flex: 1, marginLeft: 10 }}
+                title="Save Changes"
+                onPress={handleSubmit(onSubmit)}
+              />
             </View>
           </View>
         )}

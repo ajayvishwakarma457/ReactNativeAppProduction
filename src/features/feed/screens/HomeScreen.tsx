@@ -6,7 +6,7 @@ import { useTheme } from '../../../shared/context/ThemeContext';
 import { useGetPostsQuery } from '../../../shared/store/apiSlice';
 import { useAppDispatch, useAppSelector, RootState } from '../../../shared/store';
 import { toggleLikePost } from '../store/counterSlice';
-import { PostCard } from '../components/PostCard';
+import { PostCard } from '../components/organisms/PostCard';
 
 interface HomeScreenProps {
   navigation: any;
