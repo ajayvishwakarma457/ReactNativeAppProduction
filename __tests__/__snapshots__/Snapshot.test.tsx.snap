@@ -1,0 +1,345 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PostCard Snapshots renders PostCard in liked state correctly 1`] = `
+<View
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "backgroundColor": "#FFFFFF",
+      "borderColor": "#CCCCCC",
+      "borderRadius": 16,
+      "borderWidth": 1,
+      "marginBottom": 16,
+      "opacity": 1,
+      "padding": 14,
+    }
+  }
+>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "flexDirection": "row",
+      }
+    }
+  >
+    <View
+      cachePolicy="disk"
+      contentFit="cover"
+      source={
+        {
+          "uri": "https://picsum.photos/id/17/160/160",
+        }
+      }
+      style={
+        {
+          "backgroundColor": "#E2E8F0",
+          "borderRadius": 10,
+          "height": 70,
+          "width": 70,
+        }
+      }
+      transition={300}
+    />
+    <View
+      style={
+        {
+          "flex": 1,
+          "marginLeft": 12,
+        }
+      }
+    >
+      <View
+        style={
+          {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "marginBottom": 4,
+          }
+        }
+      >
+        <Text
+          numberOfLines={1}
+          style={
+            [
+              {
+                "flex": 1,
+                "fontSize": 18,
+                "fontWeight": "700",
+              },
+              {
+                "color": "#007AFF",
+                "flex": 1,
+              },
+            ]
+          }
+        >
+          Snapshot Test Title
+        </Text>
+        <View
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "marginLeft": 8,
+              "opacity": 1,
+              "padding": 6,
+            }
+          }
+        >
+          <Text
+            style={
+              {
+                "color": "#F59E0B",
+                "fontSize": 20,
+              }
+            }
+          >
+            ★
+          </Text>
+        </View>
+      </View>
+      <Text
+        numberOfLines={2}
+        style={
+          [
+            {
+              "fontSize": 14,
+              "lineHeight": 20,
+            },
+            {
+              "color": "#8E8E93",
+            },
+          ]
+        }
+      >
+        Snapshot test body content representation.
+      </Text>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`PostCard Snapshots renders PostCard in unliked state correctly 1`] = `
+<View
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "backgroundColor": "#FFFFFF",
+      "borderColor": "#CCCCCC",
+      "borderRadius": 16,
+      "borderWidth": 1,
+      "marginBottom": 16,
+      "opacity": 1,
+      "padding": 14,
+    }
+  }
+>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "flexDirection": "row",
+      }
+    }
+  >
+    <View
+      cachePolicy="disk"
+      contentFit="cover"
+      source={
+        {
+          "uri": "https://picsum.photos/id/17/160/160",
+        }
+      }
+      style={
+        {
+          "backgroundColor": "#E2E8F0",
+          "borderRadius": 10,
+          "height": 70,
+          "width": 70,
+        }
+      }
+      transition={300}
+    />
+    <View
+      style={
+        {
+          "flex": 1,
+          "marginLeft": 12,
+        }
+      }
+    >
+      <View
+        style={
+          {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "marginBottom": 4,
+          }
+        }
+      >
+        <Text
+          numberOfLines={1}
+          style={
+            [
+              {
+                "flex": 1,
+                "fontSize": 18,
+                "fontWeight": "700",
+              },
+              {
+                "color": "#007AFF",
+                "flex": 1,
+              },
+            ]
+          }
+        >
+          Snapshot Test Title
+        </Text>
+        <View
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "marginLeft": 8,
+              "opacity": 1,
+              "padding": 6,
+            }
+          }
+        >
+          <Text
+            style={
+              {
+                "color": "#8E8E93",
+                "fontSize": 20,
+              }
+            }
+          >
+            ☆
+          </Text>
+        </View>
+      </View>
+      <Text
+        numberOfLines={2}
+        style={
+          [
+            {
+              "fontSize": 14,
+              "lineHeight": 20,
+            },
+            {
+              "color": "#8E8E93",
+            },
+          ]
+        }
+      >
+        Snapshot test body content representation.
+      </Text>
+    </View>
+  </View>
+</View>
+`;

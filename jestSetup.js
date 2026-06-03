@@ -120,3 +120,23 @@ jest.mock('react-native-worklets', () => {
 jest.mock('react-native-permissions', () => {
   return require('react-native-permissions/mock');
 });
+
+// Mock local services
+jest.mock('./src/services/notifications', () => {
+  return {
+    notificationsService: {
+      requestUserPermission: jest.fn(() => Promise.resolve(true)),
+      getFCMToken: jest.fn(() => Promise.resolve('mock-token')),
+      initializeListeners: jest.fn(() => () => {}),
+    },
+  };
+});
+
+jest.mock('./src/services/backgroundTasks', () => {
+  return {
+    backgroundTasksService: {
+      executeBackgroundSync: jest.fn(),
+      getSyncStatus: jest.fn(() => ({ lastSyncTime: 'never' })),
+    },
+  };
+});

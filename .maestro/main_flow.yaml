@@ -1,0 +1,22 @@
+appId: com.app.ReactNativeAppProduction
+---
+- launchApp
+- assertVisible: "Welcome to NativeApp"
+- assertVisible: "LATEST LIVE BLOGS (RTK QUERY)"
+
+# Interactive tests - Toggle Bookmark/Like Status
+- tapOn: "☆"
+- assertVisible: "⭐ 1"
+
+# Tap on a card to navigate to detail screen
+- tapOn:
+    text: "Welcome to NativeApp"
+    index: 0
+
+# Verify Navigation detail view loads
+- assertVisible: "★"
+- assertVisible: "Dashboard"
+
+# Press native back button/gesture to return to home screen
+- back
+- assertVisible: "Welcome to NativeApp"
