@@ -122,7 +122,7 @@ jest.mock('react-native-permissions', () => {
 });
 
 // Mock local services
-jest.mock('./src/services/notifications', () => {
+jest.mock('./src/shared/services/notifications', () => {
   return {
     notificationsService: {
       requestUserPermission: jest.fn(() => Promise.resolve(true)),
@@ -132,7 +132,7 @@ jest.mock('./src/services/notifications', () => {
   };
 });
 
-jest.mock('./src/services/backgroundTasks', () => {
+jest.mock('./src/shared/services/backgroundTasks', () => {
   return {
     backgroundTasksService: {
       executeBackgroundSync: jest.fn(),

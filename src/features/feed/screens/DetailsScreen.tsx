@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Image } from 'expo-image';
-import { useTheme } from '../../context/ThemeContext';
-import { useAppDispatch, useAppSelector } from '../../store';
-import { toggleLikePost } from '../../store/counterSlice';
+import { useTheme } from '../../../shared/context/ThemeContext';
+import { useAppDispatch, useAppSelector, RootState } from '../../../shared/store';
+import { toggleLikePost } from '../store/counterSlice';
 
 interface DetailsScreenProps {
   route: any;
@@ -16,7 +16,7 @@ export const DetailsScreen: React.FC<DetailsScreenProps> = ({ route, navigation 
   const dispatch = useAppDispatch();
   const idNumber = parseInt(itemId, 10);
   
-  const likedPosts = useAppSelector((state) => state.counter.likedPosts);
+  const likedPosts = useAppSelector((state: RootState) => state.counter.likedPosts);
   const isLiked = likedPosts.includes(idNumber);
 
   return (

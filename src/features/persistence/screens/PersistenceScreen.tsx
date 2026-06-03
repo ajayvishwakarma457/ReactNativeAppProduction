@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, TextInput, TouchableOpacity } from 'react-native';
 import { useMMKVString, useMMKVNumber } from 'react-native-mmkv';
-import { getStorage } from '../../services/storage';
-import { useTheme } from '../../context/ThemeContext';
+import { getStorage } from '../../../shared/services/storage';
+import { useTheme } from '../../../shared/context/ThemeContext';
 
 export const PersistenceScreen: React.FC = () => {
   const { theme } = useTheme();

@@ -9,7 +9,7 @@ import {
   requestNotifications,
   PermissionStatus
 } from 'react-native-permissions';
-import { useTheme } from '../../context/ThemeContext';
+import { useTheme } from '../../../shared/context/ThemeContext';
 
 interface PermissionRowProps {
   title: string;

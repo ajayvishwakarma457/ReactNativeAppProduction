@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { postsApi } from './apiSlice';
-import counterReducer from './counterSlice';
+import counterReducer from '../../features/feed/store/counterSlice';
 
 export const store = configureStore({
   reducer: {

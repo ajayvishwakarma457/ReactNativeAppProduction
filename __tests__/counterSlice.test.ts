@@ -4,7 +4,7 @@ import reducer, {
   toggleLikePost,
   resetCounter,
   CounterState,
-} from '../src/store/counterSlice';
+} from '../src/features/feed/store/counterSlice';
 
 describe('counterSlice Reducer', () => {
   const initialState: CounterState = {

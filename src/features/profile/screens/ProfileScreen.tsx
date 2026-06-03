@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, TextInput, TouchableOpacity } from 'react-native';
 import { useMMKVString, useMMKVNumber } from 'react-native-mmkv';
-import { getStorage } from '../../services/storage';
+import { getStorage } from '../../../shared/services/storage';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { useTheme } from '../../context/ThemeContext';
+import { useTheme } from '../../../shared/context/ThemeContext';
 
 const profileSchema = z.object({
   username: z.string()

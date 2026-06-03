@@ -3,13 +3,13 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
-import { ErrorBoundary } from './src/components/ErrorBoundary';
-import { RootNavigator } from './src/navigation/index';
-import { ThemeProvider } from './src/context/ThemeContext';
-import { store } from './src/store';
-import { notificationsService } from './src/services/notifications';
-import { useAppState } from './src/hooks/useAppState';
-import { backgroundTasksService } from './src/services/backgroundTasks';
+import { ErrorBoundary } from './src/shared/components/ErrorBoundary';
+import { RootNavigator } from './src/shared/navigation/index';
+import { ThemeProvider } from './src/shared/context/ThemeContext';
+import { store } from './src/shared/store';
+import { notificationsService } from './src/shared/services/notifications';
+import { useAppState } from './src/shared/hooks/useAppState';
+import { backgroundTasksService } from './src/shared/services/backgroundTasks';
 
 const linking = {
   prefixes: ['rnp://', 'https://rnp-app.com'],

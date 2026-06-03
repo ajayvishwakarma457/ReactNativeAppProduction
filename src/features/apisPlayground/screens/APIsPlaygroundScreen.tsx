@@ -17,7 +17,7 @@ import {
 } from '@apollo/client';
 import { ApolloProvider, useQuery } from '@apollo/client/react';
 import { Image } from 'expo-image';
-import { useTheme } from '../../context/ThemeContext';
+import { useTheme } from '../../../shared/context/ThemeContext';
 
 // ----------------------------------------------------
 // Apollo GraphQL Client Setup

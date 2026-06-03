@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useTheme } from '../../context/ThemeContext';
+import { useTheme } from '../../../shared/context/ThemeContext';
 
 export const SettingsScreen: React.FC = () => {
   const safeAreaInsets = useSafeAreaInsets();

@@ -9,14 +9,14 @@ import { useTheme } from '../context/ThemeContext';
 import { HomeStackParamList, TabParamList, DrawerParamList } from '../types/navigation';
 
 // Import Screens
-import { HomeScreen } from '../screens/Home/HomeScreen';
-import { DetailsScreen } from '../screens/Home/DetailsScreen';
-import { PersistenceScreen } from '../screens/Persistence/PersistenceScreen';
-import { ProfileScreen } from '../screens/Profile/ProfileScreen';
-import { SettingsScreen } from '../screens/Settings/SettingsScreen';
-import { HooksPlaygroundScreen } from '../screens/Hooks/HooksPlaygroundScreen';
-import { PermissionsPlaygroundScreen } from '../screens/Settings/PermissionsPlaygroundScreen';
-import { APIsPlaygroundScreen } from '../screens/Home/APIsPlaygroundScreen';
+import { HomeScreen } from '../../features/feed/screens/HomeScreen';
+import { DetailsScreen } from '../../features/feed/screens/DetailsScreen';
+import { PersistenceScreen } from '../../features/persistence/screens/PersistenceScreen';
+import { ProfileScreen } from '../../features/profile/screens/ProfileScreen';
+import { SettingsScreen } from '../../features/settings/screens/SettingsScreen';
+import { HooksPlaygroundScreen } from '../../features/hooksPlayground/screens/HooksPlaygroundScreen';
+import { PermissionsPlaygroundScreen } from '../../features/permissions/screens/PermissionsPlaygroundScreen';
+import { APIsPlaygroundScreen } from '../../features/apisPlayground/screens/APIsPlaygroundScreen';
 
 const Stack = createNativeStackNavigator<HomeStackParamList>();
 const Tab = createBottomTabNavigator<TabParamList>();

@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
-import { PostCard } from '../src/screens/Home/HomeScreen';
+import { PostCard } from '../src/features/feed/components/PostCard';
 
 describe('PostCard Component', () => {
   const mockItem = {
