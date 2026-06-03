@@ -103,6 +103,9 @@ const { NativeModules } = require('react-native');
 NativeModules.Worklets = {
   loadUnpackers: jest.fn(),
 };
+NativeModules.DeviceHelper = {
+  getDeviceModel: jest.fn(() => Promise.resolve('Mock Device')),
+};
 jest.mock('react-native-worklets', () => {
   return {
     createSerializable: (val) => val,
