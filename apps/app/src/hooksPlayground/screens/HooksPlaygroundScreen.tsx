@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import { View, Text, StyleSheet, ScrollView, TextInput, TouchableOpacity, Switch } from 'react-native';
+import Animated, { useSharedValue, useAnimatedStyle, withSpring, withTiming } from 'react-native-reanimated';
 import { useTheme } from '@app/shared/context/ThemeContext';
 import { useToggle } from '@app/shared/hooks/useToggle';
 import { useInterval } from '@app/shared/hooks/useInterval';
@@ -92,6 +93,27 @@ export const HooksPlaygroundScreen: React.FC = () => {
 
   const focusInput = () => {
     inputRef.current?.focus();
+  };
+
+  // 5. Reanimated Scale Shared Value
+  const scale = useSharedValue(1);
+  const opacity = useSharedValue(1);
+
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
+      transform: [{ scale: scale.value }],
+      opacity: opacity.value,
+    };
+  });
+
+  const handlePressIn = () => {
+    scale.value = withSpring(0.9);
+    opacity.value = withTiming(0.8, { duration: 150 });
+  };
+
+  const handlePressOut = () => {
+    scale.value = withSpring(1);
+    opacity.value = withTiming(1, { duration: 150 });
   };
 
   return (
@@ -217,6 +239,21 @@ export const HooksPlaygroundScreen: React.FC = () => {
           <Text style={[styles.refBtnText, { color: theme.background }]}>Focus Input Field</Text>
         </TouchableOpacity>
       </View>
+      {/* 5. Reanimated v3 Card */}
+      <Animated.View style={[styles.playgroundCard, animatedStyle, { backgroundColor: theme.card, borderColor: theme.cardBorder }]}>
+        <Text style={[styles.cardTitlePlayground, { color: theme.primary }]}>🎬 Reanimated (Native UI Thread)</Text>
+        <Text style={[styles.cardDescPlayground, { color: theme.textMuted }]}>
+          This card scale and opacity values are managed directly on the UI thread using Reanimated Worklets. Press on it to test smooth physics spring responsiveness.
+        </Text>
+        <TouchableOpacity 
+          activeOpacity={1}
+          onPressIn={handlePressIn}
+          onPressOut={handlePressOut}
+          style={{ width: '100%', padding: 12, backgroundColor: theme.primary + '15', borderRadius: 8, alignItems: 'center' }}
+        >
+          <Text style={{ color: theme.primary, fontWeight: '700' }}>PRESS ME TO SCALE</Text>
+        </TouchableOpacity>
+      </Animated.View>
     </ScrollView>
   );
 };
