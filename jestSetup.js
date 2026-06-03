@@ -140,3 +140,11 @@ jest.mock('./src/services/backgroundTasks', () => {
     },
   };
 });
+
+// Mock react-native-config
+jest.mock('react-native-config', () => {
+  return {
+    API_URL: 'https://jsonplaceholder.typicode.com',
+    APP_ENV: 'test',
+  };
+});

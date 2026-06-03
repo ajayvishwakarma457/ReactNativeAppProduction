@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import Config from 'react-native-config';
 
 export interface Post {
   userId: number;
@@ -10,7 +11,7 @@ export interface Post {
 export const postsApi = createApi({
   reducerPath: 'postsApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://jsonplaceholder.typicode.com',
+    baseUrl: Config.API_URL,
     prepareHeaders: (headers) => {
       // Example of setting global headers (similar to Axios interceptor)
       headers.set('Authorization', 'Bearer mock-auth-token-redux-123');
