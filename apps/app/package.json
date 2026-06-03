@@ -1,0 +1,17 @@
+{
+  "name": "app",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "android": "npx react-native run-android",
+    "ios": "npx react-native run-ios",
+    "start": "npx react-native start"
+  },
+  "dependencies": {
+    "@app/shared": "*",
+    "react-native": "0.85.3"
+  },
+  "devDependencies": {
+    "@react-native-community/cli": "20.1.0"
+  }
+}

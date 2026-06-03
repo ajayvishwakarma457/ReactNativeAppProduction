@@ -1,0 +1,579 @@
+{
+  "version": "6.0",
+  "nxVersion": "19.8.14",
+  "deps": {
+    "@apollo/client": "^4.2.1",
+    "@hookform/resolvers": "^5.4.0",
+    "@react-native-firebase/app": "^24.0.0",
+    "@react-native-firebase/messaging": "^24.0.0",
+    "@react-native/new-app-screen": "0.85.3",
+    "@react-navigation/bottom-tabs": "^7.16.2",
+    "@react-navigation/drawer": "^7.10.3",
+    "@react-navigation/native": "^7.2.5",
+    "@react-navigation/native-stack": "^7.16.0",
+    "@reduxjs/toolkit": "^2.12.0",
+    "@shopify/flash-list": "^2.3.1",
+    "axios": "^1.16.1",
+    "expo": "~56.0.0",
+    "expo-image": "^56.0.9",
+    "expo-modules-core": "^56.0.14",
+    "expo-updates": "^56.0.17",
+    "graphql": "^16.14.1",
+    "react": "19.2.3",
+    "react-hook-form": "^7.77.0",
+    "react-native": "0.85.3",
+    "react-native-config": "^1.6.1",
+    "react-native-gesture-handler": "^3.0.0",
+    "react-native-mmkv": "^4.3.1",
+    "react-native-nitro-modules": "^0.35.9",
+    "react-native-permissions": "^5.5.2",
+    "react-native-reanimated": "^4.4.0",
+    "react-native-safe-area-context": "^5.5.2",
+    "react-native-screens": "^4.25.2",
+    "react-native-worklets": "^0.9.1",
+    "react-redux": "^9.3.0",
+    "rxjs": "^7.8.2",
+    "web-streams-polyfill": "^4.3.0",
+    "zod": "^3.25.76",
+    "@babel/core": "^7.25.2",
+    "@babel/preset-env": "^7.25.3",
+    "@babel/runtime": "^7.25.0",
+    "@react-native-community/cli": "20.1.0",
+    "@react-native-community/cli-platform-android": "20.1.0",
+    "@react-native-community/cli-platform-ios": "20.1.0",
+    "@react-native/babel-preset": "0.85.3",
+    "@react-native/eslint-config": "0.85.3",
+    "@react-native/jest-preset": "0.85.3",
+    "@react-native/metro-config": "0.85.3",
+    "@react-native/typescript-config": "0.85.3",
+    "@testing-library/jest-native": "^5.4.3",
+    "@testing-library/react-native": "^13.3.3",
+    "@types/jest": "^29.5.13",
+    "@types/react": "^19.2.0",
+    "@types/react-test-renderer": "^19.1.0",
+    "babel-preset-expo": "~56.0.0",
+    "eslint": "^8.19.0",
+    "jest": "^29.6.3",
+    "prettier": "2.8.8",
+    "react-test-renderer": "19.2.3",
+    "typescript": "^5.8.3",
+    "nx": "^19.0.0"
+  },
+  "pathMappings": {
+    "@app/shared/*": [
+      "libs/shared/src/*"
+    ]
+  },
+  "nxJsonPlugins": [],
+  "fileMap": {
+    "nonProjectFiles": [
+      {
+        "file": "jest.config.js",
+        "hash": "1857122768812130643"
+      },
+      {
+        "file": ".eslintrc.js",
+        "hash": "17354359792012622799"
+      },
+      {
+        "file": "documentation/permissions-setup.md",
+        "hash": "15204100891450206578"
+      },
+      {
+        "file": "documentation/environment-variables-setup.md",
+        "hash": "12121737323360679002"
+      },
+      {
+        "file": "documentation/atomic-design-principles.md",
+        "hash": "16011260969684524187"
+      },
+      {
+        "file": "documentation/deep-linking-setup.md",
+        "hash": "6852005379279861325"
+      },
+      {
+        "file": ".prettierrc.js",
+        "hash": "5023573646155516009"
+      },
+      {
+        "file": "__tests__/Integration.test.tsx",
+        "hash": "14250186568448107332"
+      },
+      {
+        "file": "babel.config.js",
+        "hash": "8426712431481365865"
+      },
+      {
+        "file": ".maestro/main_flow.yaml",
+        "hash": "12304469996533943158"
+      },
+      {
+        "file": "documentation/testing-overview.md",
+        "hash": "16019943471189593371"
+      },
+      {
+        "file": "tsconfig.base.json",
+        "hash": "8145869761933606964"
+      },
+      {
+        "file": "Gemfile",
+        "hash": "1424068435665259072"
+      },
+      {
+        "file": "package-lock.json",
+        "hash": "10854402764491660495"
+      },
+      {
+        "file": "documentation/rendering-optimizations.md",
+        "hash": "12011831102202638490"
+      },
+      {
+        "file": "__tests__/Snapshot.test.tsx",
+        "hash": "6701078042920596386"
+      },
+      {
+        "file": "documentation/image-optimization-setup.md",
+        "hash": "10650291666498541978"
+      },
+      {
+        "file": ".env.example",
+        "hash": "5038072984362218189"
+      },
+      {
+        "file": ".watchmanconfig",
+        "hash": "15753941481085060538"
+      },
+      {
+        "file": "__tests__/hooks.test.tsx",
+        "hash": "304009633782018445"
+      },
+      {
+        "file": "Gemfile.lock",
+        "hash": "5382292044325921018"
+      },
+      {
+        "file": ".gitignore",
+        "hash": "575076159127643720"
+      },
+      {
+        "file": "README.md",
+        "hash": "10575641548894021443"
+      },
+      {
+        "file": "documentation/agent-handoff.md",
+        "hash": "6346786173975418223"
+      },
+      {
+        "file": "documentation/background-tasks-setup.md",
+        "hash": "11542981143415627664"
+      },
+      {
+        "file": "documentation/custom-hooks-library.md",
+        "hash": "5596723985188217459"
+      },
+      {
+        "file": "documentation/list-optimization-flashlist.md",
+        "hash": "11701762988804666614"
+      },
+      {
+        "file": "documentation/simulator-testing-guide.md",
+        "hash": "12207838675590601400"
+      },
+      {
+        "file": "documentation/tech-stack.md",
+        "hash": "11766329896767776189"
+      },
+      {
+        "file": "__tests__/counterSlice.test.ts",
+        "hash": "5192673742869732861"
+      },
+      {
+        "file": "__tests__/PostCard.test.tsx",
+        "hash": "14017465271675165184"
+      },
+      {
+        "file": "__tests__/__snapshots__/Snapshot.test.tsx.snap",
+        "hash": "5535447525800610547"
+      },
+      {
+        "file": "documentation/unit-testing-guide.md",
+        "hash": "1108713542708595059"
+      },
+      {
+        "file": "documentation/react-navigation-setup.md",
+        "hash": "3603620713976552520"
+      },
+      {
+        "file": "__tests__/App.test.tsx",
+        "hash": "8819955834035240280"
+      },
+      {
+        "file": "documentation/modular-folder-architecture.md",
+        "hash": "12057145093958554284"
+      },
+      {
+        "file": "documentation/networking-integration.md",
+        "hash": "18319235225755178251"
+      },
+      {
+        "file": "documentation/setup-guide.md",
+        "hash": "7694525076415849695"
+      },
+      {
+        "file": ".bundle/config",
+        "hash": "9116505824108018199"
+      },
+      {
+        "file": "eas.json",
+        "hash": "1817447473739824005"
+      },
+      {
+        "file": "documentation/eas-build-update-setup.md",
+        "hash": "12548690222326690464"
+      },
+      {
+        "file": "documentation/push-notifications-setup.md",
+        "hash": "13331154057948139794"
+      },
+      {
+        "file": "documentation/monorepo-nx-setup.md",
+        "hash": "6205499959191426902"
+      },
+      {
+        "file": "jestSetup.js",
+        "hash": "13280596352288109327"
+      },
+      {
+        "file": "nx.json",
+        "hash": "16071240757244205728"
+      },
+      {
+        "file": "package.json",
+        "hash": "10532651103346910414"
+      }
+    ],
+    "projectFileMap": {
+      "app": [
+        {
+          "file": "apps/app/App.tsx",
+          "hash": "6612221469070840663"
+        },
+        {
+          "file": "apps/app/android/app/build.gradle",
+          "hash": "8339872435727901865"
+        },
+        {
+          "file": "apps/app/android/app/debug.keystore",
+          "hash": "5037686243849261810"
+        },
+        {
+          "file": "apps/app/android/app/proguard-rules.pro",
+          "hash": "13814197385154279786"
+        },
+        {
+          "file": "apps/app/android/app/src/main/AndroidManifest.xml",
+          "hash": "590687619236106802"
+        },
+        {
+          "file": "apps/app/android/app/src/main/java/com/app/MainActivity.kt",
+          "hash": "2725932921925830031"
+        },
+        {
+          "file": "apps/app/android/app/src/main/java/com/app/MainApplication.kt",
+          "hash": "13296078824066128280"
+        },
+        {
+          "file": "apps/app/android/app/src/main/res/drawable/rn_edit_text_material.xml",
+          "hash": "4466596183044014152"
+        },
+        {
+          "file": "apps/app/android/app/src/main/res/mipmap-hdpi/ic_launcher.png",
+          "hash": "10788509195642110029"
+        },
+        {
+          "file": "apps/app/android/app/src/main/res/mipmap-hdpi/ic_launcher_round.png",
+          "hash": "14348562046770238248"
+        },
+        {
+          "file": "apps/app/android/app/src/main/res/mipmap-mdpi/ic_launcher.png",
+          "hash": "328692529308011025"
+        },
+        {
+          "file": "apps/app/android/app/src/main/res/mipmap-mdpi/ic_launcher_round.png",
+          "hash": "11802043336826859502"
+        },
+        {
+          "file": "apps/app/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png",
+          "hash": "13006206334539413900"
+        },
+        {
+          "file": "apps/app/android/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png",
+          "hash": "1812825738055967771"
+        },
+        {
+          "file": "apps/app/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png",
+          "hash": "6104457872863500683"
+        },
+        {
+          "file": "apps/app/android/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png",
+          "hash": "2478168592410677995"
+        },
+        {
+          "file": "apps/app/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+          "hash": "12283149652938275290"
+        },
+        {
+          "file": "apps/app/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png",
+          "hash": "7126668675123994836"
+        },
+        {
+          "file": "apps/app/android/app/src/main/res/values/strings.xml",
+          "hash": "14826154590422842128"
+        },
+        {
+          "file": "apps/app/android/app/src/main/res/values/styles.xml",
+          "hash": "14052910750539201041"
+        },
+        {
+          "file": "apps/app/android/build.gradle",
+          "hash": "5354145390869808731"
+        },
+        {
+          "file": "apps/app/android/gradle.properties",
+          "hash": "9051431235718361316"
+        },
+        {
+          "file": "apps/app/android/gradle/wrapper/gradle-wrapper.jar",
+          "hash": "17168250137262685009"
+        },
+        {
+          "file": "apps/app/android/gradle/wrapper/gradle-wrapper.properties",
+          "hash": "11642251887841898380"
+        },
+        {
+          "file": "apps/app/android/gradlew",
+          "hash": "18228996197658660565"
+        },
+        {
+          "file": "apps/app/android/gradlew.bat",
+          "hash": "17267172545015332317"
+        },
+        {
+          "file": "apps/app/android/settings.gradle",
+          "hash": "3185812159978850715"
+        },
+        {
+          "file": "apps/app/app.json",
+          "hash": "387266069192630576"
+        },
+        {
+          "file": "apps/app/babel.config.js",
+          "hash": "8426712431481365865"
+        },
+        {
+          "file": "apps/app/index.js",
+          "hash": "15821186624022850873"
+        },
+        {
+          "file": "apps/app/ios/.xcode.env",
+          "hash": "2240437479405059044"
+        },
+        {
+          "file": "apps/app/ios/App.xcodeproj/project.pbxproj",
+          "hash": "5571248051774997259"
+        },
+        {
+          "file": "apps/app/ios/App.xcworkspace/contents.xcworkspacedata",
+          "hash": "5267424201368556030"
+        },
+        {
+          "file": "apps/app/ios/App/App.entitlements",
+          "hash": "2224224909566426569"
+        },
+        {
+          "file": "apps/app/ios/App/AppDelegate.swift",
+          "hash": "5062767061688716289"
+        },
+        {
+          "file": "apps/app/ios/App/GoogleService-Info.plist",
+          "hash": "6274765765371974492"
+        },
+        {
+          "file": "apps/app/ios/App/Images.xcassets/AppIcon.appiconset/Contents.json",
+          "hash": "13651775502586994303"
+        },
+        {
+          "file": "apps/app/ios/App/Images.xcassets/Contents.json",
+          "hash": "10114040536141029740"
+        },
+        {
+          "file": "apps/app/ios/App/Info.plist",
+          "hash": "11731848256396282093"
+        },
+        {
+          "file": "apps/app/ios/App/LaunchScreen.storyboard",
+          "hash": "2552992050299143276"
+        },
+        {
+          "file": "apps/app/ios/App/PrivacyInfo.xcprivacy",
+          "hash": "348247780330524982"
+        },
+        {
+          "file": "apps/app/ios/Podfile",
+          "hash": "5638773236572556885"
+        },
+        {
+          "file": "apps/app/ios/Podfile.lock",
+          "hash": "1391420157518479752"
+        },
+        {
+          "file": "apps/app/metro.config.js",
+          "hash": "235654235977257527"
+        },
+        {
+          "file": "apps/app/package.json",
+          "hash": "393308049081788329",
+          "deps": [
+            "npm:@react-native-community/cli",
+            "@app/shared",
+            "npm:react-native"
+          ]
+        },
+        {
+          "file": "apps/app/src/apisPlayground/screens/APIsPlaygroundScreen.tsx",
+          "hash": "12507105798377868077"
+        },
+        {
+          "file": "apps/app/src/feed/components/organisms/PostCard.tsx",
+          "hash": "13803220456100884917"
+        },
+        {
+          "file": "apps/app/src/feed/screens/DetailsScreen.tsx",
+          "hash": "6443981326393576303"
+        },
+        {
+          "file": "apps/app/src/feed/screens/HomeScreen.tsx",
+          "hash": "14063908132004941460"
+        },
+        {
+          "file": "apps/app/src/feed/store/counterSlice.ts",
+          "hash": "6054119205133012190"
+        },
+        {
+          "file": "apps/app/src/hooksPlayground/screens/HooksPlaygroundScreen.tsx",
+          "hash": "6367212924925476494"
+        },
+        {
+          "file": "apps/app/src/permissions/screens/PermissionsPlaygroundScreen.tsx",
+          "hash": "933639801132220975"
+        },
+        {
+          "file": "apps/app/src/persistence/screens/PersistenceScreen.tsx",
+          "hash": "10680658795898855097"
+        },
+        {
+          "file": "apps/app/src/profile/screens/ProfileScreen.tsx",
+          "hash": "8816620867065892101"
+        },
+        {
+          "file": "apps/app/src/settings/screens/SettingsScreen.tsx",
+          "hash": "10740735106468455349"
+        },
+        {
+          "file": "apps/app/src/shared/navigation/index.tsx",
+          "hash": "18032456982393576134"
+        },
+        {
+          "file": "apps/app/src/shared/store/apiSlice.ts",
+          "hash": "809172649923237371"
+        },
+        {
+          "file": "apps/app/src/shared/store/index.ts",
+          "hash": "18113989747794679598"
+        },
+        {
+          "file": "apps/app/tsconfig.json",
+          "hash": "6723049289697597301"
+        }
+      ],
+      "@app/shared": [
+        {
+          "file": "libs/shared/package.json",
+          "hash": "559943267044646966"
+        },
+        {
+          "file": "libs/shared/src/components/ErrorBoundary.tsx",
+          "hash": "11163674282129119149"
+        },
+        {
+          "file": "libs/shared/src/components/atoms/AppButton.tsx",
+          "hash": "766507132060192639"
+        },
+        {
+          "file": "libs/shared/src/components/atoms/AppText.tsx",
+          "hash": "5305176170483309826"
+        },
+        {
+          "file": "libs/shared/src/components/molecules/FormField.tsx",
+          "hash": "12707006520877494055"
+        },
+        {
+          "file": "libs/shared/src/context/ThemeContext.tsx",
+          "hash": "6961428499065090188"
+        },
+        {
+          "file": "libs/shared/src/hooks/useAppState.ts",
+          "hash": "12362304659151053167"
+        },
+        {
+          "file": "libs/shared/src/hooks/useBackHandler.ts",
+          "hash": "11001628730885705266"
+        },
+        {
+          "file": "libs/shared/src/hooks/useDebounce.ts",
+          "hash": "2423128054498657481"
+        },
+        {
+          "file": "libs/shared/src/hooks/useInterval.ts",
+          "hash": "5782995111841356319"
+        },
+        {
+          "file": "libs/shared/src/hooks/useKeyboard.ts",
+          "hash": "11136362985722701737"
+        },
+        {
+          "file": "libs/shared/src/hooks/useToggle.ts",
+          "hash": "802420763795109694"
+        },
+        {
+          "file": "libs/shared/src/index.ts",
+          "hash": "14158874933771182649"
+        },
+        {
+          "file": "libs/shared/src/services/api.ts",
+          "hash": "3044218258549003997"
+        },
+        {
+          "file": "libs/shared/src/services/backgroundTasks.ts",
+          "hash": "8803506372470962657"
+        },
+        {
+          "file": "libs/shared/src/services/notifications.ts",
+          "hash": "17676791808515011121"
+        },
+        {
+          "file": "libs/shared/src/services/storage.ts",
+          "hash": "14958348191321565896"
+        },
+        {
+          "file": "libs/shared/src/types/navigation.ts",
+          "hash": "7585378036960685798"
+        },
+        {
+          "file": "libs/shared/tsconfig.json",
+          "hash": "5659662920144063095"
+        }
+      ]
+    }
+  }
+}

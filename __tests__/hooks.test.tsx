@@ -1,11 +1,11 @@
 import React from 'react';
 import { renderHook, act } from '@testing-library/react-native';
 import { Keyboard, BackHandler } from 'react-native';
-import { useToggle } from '../src/shared/hooks/useToggle';
-import { useDebounce } from '../src/shared/hooks/useDebounce';
-import { useKeyboard } from '../src/shared/hooks/useKeyboard';
-import { useBackHandler } from '../src/shared/hooks/useBackHandler';
-import { useInterval } from '../src/shared/hooks/useInterval';
+import { useToggle } from '@app/shared/hooks/useToggle';
+import { useDebounce } from '@app/shared/hooks/useDebounce';
+import { useKeyboard } from '@app/shared/hooks/useKeyboard';
+import { useBackHandler } from '@app/shared/hooks/useBackHandler';
+import { useInterval } from '@app/shared/hooks/useInterval';
 
 // Mock Keyboard and BackHandler if not fully mocked by preset
 jest.spyOn(Keyboard, 'addListener');

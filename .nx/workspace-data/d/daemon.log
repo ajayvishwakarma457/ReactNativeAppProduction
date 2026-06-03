@@ -1,0 +1,132 @@
+[NX Daemon Server] - 2026-06-03T15:58:02.576Z - Started listening on: /private/var/folders/l0/64f2yp9518l7wfyn82rx60100000gn/T/307c47fc2058529fe9af/d.sock
+[NX Daemon Server] - 2026-06-03T15:58:02.578Z - [WATCHER]: Subscribed to changes within: /Users/ajay/Documents/ReactNativeAppProduction (native)
+[NX Daemon Server] - 2026-06-03T15:58:02.585Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2026-06-03T15:58:02.586Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2026-06-03T15:58:02.586Z - Closed a connection. Number of open connections: 1
+[NX Daemon Server] - 2026-06-03T15:58:02.587Z - [REQUEST]: Responding to the client. Shutdown initiated
+[NX Daemon Server] - 2026-06-03T15:58:02.587Z - Done responding to the client Shutdown initiated
+[NX Daemon Server] - 2026-06-03T15:58:02.587Z - Handled FORCE_SHUTDOWN. Handling time: 0. Response time: 0.
+[NX Daemon Server] - 2026-06-03T15:58:02.588Z - Closed a connection. Number of open connections: 0
+[NX Daemon Server] - 2026-06-03T15:58:02.588Z - [WATCHER]: Stopping the watcher for /Users/ajay/Documents/ReactNativeAppProduction (sources)
+[NX Daemon Server] - 2026-06-03T15:58:02.588Z - [WATCHER]: Stopping the watcher for /Users/ajay/Documents/ReactNativeAppProduction (outputs)
+[NX Daemon Server] - 2026-06-03T16:00:42.398Z - Started listening on: /private/var/folders/l0/64f2yp9518l7wfyn82rx60100000gn/T/307c47fc2058529fe9af/d.sock
+[NX Daemon Server] - 2026-06-03T16:00:42.400Z - [WATCHER]: Subscribed to changes within: /Users/ajay/Documents/ReactNativeAppProduction (native)
+[NX Daemon Server] - 2026-06-03T16:00:42.404Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2026-06-03T16:00:42.405Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2026-06-03T16:00:42.405Z - Closed a connection. Number of open connections: 1
+[NX Daemon Server] - 2026-06-03T16:00:42.406Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2026-06-03T16:00:42.459Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2026-06-03T16:00:42.487Z - Time taken for 'Load Nx Plugin: /Users/ajay/Documents/ReactNativeAppProduction/node_modules/nx/src/plugins/package-json' 79.971625ms
+[NX Daemon Server] - 2026-06-03T16:00:42.488Z - Time taken for 'Load Nx Plugin: /Users/ajay/Documents/ReactNativeAppProduction/node_modules/nx/src/plugins/js' 82.273667ms
+[NX Daemon Server] - 2026-06-03T16:00:42.490Z - [REQUEST]: Updated workspace context based on watched changes, recomputing project graph...
+[NX Daemon Server] - 2026-06-03T16:00:42.490Z - [REQUEST]: 
+[NX Daemon Server] - 2026-06-03T16:00:42.490Z - [REQUEST]: 
+[NX Daemon Server] - 2026-06-03T16:00:42.493Z - Time taken for 'loadNxPlugins' 84.268208ms
+[NX Daemon Server] - 2026-06-03T16:00:42.511Z - Time taken for 'build-project-configs' 10.961832999999984ms
+[NX Daemon Server] - 2026-06-03T16:00:42.551Z - [SYNC]: collect registered sync generators
+[NX Daemon Server] - 2026-06-03T16:00:42.552Z - [REQUEST]: Responding to the client. project-graph
+[NX Daemon Server] - 2026-06-03T16:00:42.552Z - Time taken for 'total for creating and serializing project graph' 146.002084ms
+[NX Daemon Server] - 2026-06-03T16:00:42.553Z - Done responding to the client project-graph
+[NX Daemon Server] - 2026-06-03T16:00:42.553Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 146. Response time: 1.
+[NX Daemon Server] - 2026-06-03T16:00:42.556Z - Closed a connection. Number of open connections: 0
+[NX Daemon Server] - 2026-06-03T16:00:50.722Z - [WATCHER]: package.json was modified
+[NX Daemon Server] - 2026-06-03T16:00:50.723Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2026-06-03T16:00:50.824Z - [REQUEST]: Updated workspace context based on watched changes, recomputing project graph...
+[NX Daemon Server] - 2026-06-03T16:00:50.824Z - [REQUEST]: package.json
+[NX Daemon Server] - 2026-06-03T16:00:50.824Z - [REQUEST]: 
+[NX Daemon Server] - 2026-06-03T16:00:50.826Z - Time taken for 'hash changed files from watcher' 0.12358300000050804ms
+[NX Daemon Server] - 2026-06-03T16:00:50.838Z - Time taken for 'build-project-configs' 10.423624999999447ms
+[NX Daemon Server] - 2026-06-03T16:00:50.853Z - [SYNC]: collect registered sync generators
+[NX Daemon Server] - 2026-06-03T16:00:50.853Z - [SYNC]: project graph hash is the same, not collecting task sync generators
+[NX Daemon Server] - 2026-06-03T16:00:50.853Z - [SYNC]: nx.json hash is the same, not collecting global sync generators
+[NX Daemon Server] - 2026-06-03T16:00:50.853Z - Time taken for 'total execution time for createProjectGraph()' 14.106999999999971ms
+[NX Daemon Server] - 2026-06-03T16:01:09.631Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2026-06-03T16:01:09.631Z - [WATCHER]: babel.config.js was created or restored
+[NX Daemon Server] - 2026-06-03T16:01:09.732Z - [REQUEST]: Updated workspace context based on watched changes, recomputing project graph...
+[NX Daemon Server] - 2026-06-03T16:01:09.732Z - [REQUEST]: babel.config.js
+[NX Daemon Server] - 2026-06-03T16:01:09.732Z - [REQUEST]: 
+[NX Daemon Server] - 2026-06-03T16:01:09.733Z - Time taken for 'hash changed files from watcher' 0.12083300000085728ms
+[NX Daemon Server] - 2026-06-03T16:01:09.741Z - Time taken for 'build-project-configs' 6.319166999997833ms
+[NX Daemon Server] - 2026-06-03T16:01:09.758Z - [SYNC]: collect registered sync generators
+[NX Daemon Server] - 2026-06-03T16:01:09.758Z - [SYNC]: project graph hash is the same, not collecting task sync generators
+[NX Daemon Server] - 2026-06-03T16:01:09.758Z - [SYNC]: nx.json hash is the same, not collecting global sync generators
+[NX Daemon Server] - 2026-06-03T16:01:09.758Z - Time taken for 'total execution time for createProjectGraph()' 15.816416999998182ms
+[NX Daemon Server] - 2026-06-03T16:01:30.840Z - [WATCHER]: __tests__/App.test.tsx was modified
+[NX Daemon Server] - 2026-06-03T16:01:30.841Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2026-06-03T16:01:31.041Z - [REQUEST]: Updated workspace context based on watched changes, recomputing project graph...
+[NX Daemon Server] - 2026-06-03T16:01:31.042Z - [REQUEST]: __tests__/App.test.tsx
+[NX Daemon Server] - 2026-06-03T16:01:31.042Z - [REQUEST]: 
+[NX Daemon Server] - 2026-06-03T16:01:31.043Z - Time taken for 'hash changed files from watcher' 0.13995799999975134ms
+[NX Daemon Server] - 2026-06-03T16:01:31.052Z - Time taken for 'build-project-configs' 7.7618749999965075ms
+[NX Daemon Server] - 2026-06-03T16:01:31.066Z - [SYNC]: collect registered sync generators
+[NX Daemon Server] - 2026-06-03T16:01:31.066Z - [SYNC]: project graph hash is the same, not collecting task sync generators
+[NX Daemon Server] - 2026-06-03T16:01:31.066Z - [SYNC]: nx.json hash is the same, not collecting global sync generators
+[NX Daemon Server] - 2026-06-03T16:01:31.066Z - Time taken for 'total execution time for createProjectGraph()' 11.905291999995825ms
+[NX Daemon Server] - 2026-06-03T16:01:36.663Z - [WATCHER]: __tests__/counterSlice.test.ts was modified
+[NX Daemon Server] - 2026-06-03T16:01:36.663Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2026-06-03T16:01:37.063Z - [REQUEST]: Updated workspace context based on watched changes, recomputing project graph...
+[NX Daemon Server] - 2026-06-03T16:01:37.063Z - [REQUEST]: __tests__/counterSlice.test.ts
+[NX Daemon Server] - 2026-06-03T16:01:37.063Z - [REQUEST]: 
+[NX Daemon Server] - 2026-06-03T16:01:37.066Z - Time taken for 'hash changed files from watcher' 0.4117079999996349ms
+[NX Daemon Server] - 2026-06-03T16:01:37.080Z - Time taken for 'build-project-configs' 13.08087499999965ms
+[NX Daemon Server] - 2026-06-03T16:01:37.096Z - [SYNC]: collect registered sync generators
+[NX Daemon Server] - 2026-06-03T16:01:37.096Z - [SYNC]: project graph hash is the same, not collecting task sync generators
+[NX Daemon Server] - 2026-06-03T16:01:37.096Z - [SYNC]: nx.json hash is the same, not collecting global sync generators
+[NX Daemon Server] - 2026-06-03T16:01:37.096Z - Time taken for 'total execution time for createProjectGraph()' 13.794874999999593ms
+[NX Daemon Server] - 2026-06-03T16:01:42.123Z - [WATCHER]: __tests__/Snapshot.test.tsx was modified
+[NX Daemon Server] - 2026-06-03T16:01:42.123Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2026-06-03T16:01:42.924Z - [REQUEST]: Updated workspace context based on watched changes, recomputing project graph...
+[NX Daemon Server] - 2026-06-03T16:01:42.924Z - [REQUEST]: __tests__/Snapshot.test.tsx
+[NX Daemon Server] - 2026-06-03T16:01:42.924Z - [REQUEST]: 
+[NX Daemon Server] - 2026-06-03T16:01:42.929Z - Time taken for 'hash changed files from watcher' 0.37804200000391575ms
+[NX Daemon Server] - 2026-06-03T16:01:42.946Z - Time taken for 'build-project-configs' 16.997917000000598ms
+[NX Daemon Server] - 2026-06-03T16:01:42.967Z - [SYNC]: collect registered sync generators
+[NX Daemon Server] - 2026-06-03T16:01:42.967Z - [SYNC]: project graph hash is the same, not collecting task sync generators
+[NX Daemon Server] - 2026-06-03T16:01:42.967Z - [SYNC]: nx.json hash is the same, not collecting global sync generators
+[NX Daemon Server] - 2026-06-03T16:01:42.967Z - Time taken for 'total execution time for createProjectGraph()' 19.124459000006027ms
+[NX Daemon Server] - 2026-06-03T16:01:51.503Z - [WATCHER]: __tests__/PostCard.test.tsx was modified
+[NX Daemon Server] - 2026-06-03T16:01:51.503Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2026-06-03T16:01:53.105Z - [REQUEST]: Updated workspace context based on watched changes, recomputing project graph...
+[NX Daemon Server] - 2026-06-03T16:01:53.105Z - [REQUEST]: __tests__/PostCard.test.tsx
+[NX Daemon Server] - 2026-06-03T16:01:53.105Z - [REQUEST]: 
+[NX Daemon Server] - 2026-06-03T16:01:53.111Z - Time taken for 'hash changed files from watcher' 0.5853330000099959ms
+[NX Daemon Server] - 2026-06-03T16:01:53.126Z - Time taken for 'build-project-configs' 16.72691699999268ms
+[NX Daemon Server] - 2026-06-03T16:01:53.146Z - [SYNC]: collect registered sync generators
+[NX Daemon Server] - 2026-06-03T16:01:53.147Z - [SYNC]: project graph hash is the same, not collecting task sync generators
+[NX Daemon Server] - 2026-06-03T16:01:53.147Z - [SYNC]: nx.json hash is the same, not collecting global sync generators
+[NX Daemon Server] - 2026-06-03T16:01:53.147Z - Time taken for 'total execution time for createProjectGraph()' 15.71387500000128ms
+[NX Daemon Server] - 2026-06-03T16:01:58.752Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2026-06-03T16:01:58.753Z - [WATCHER]: __tests__/Integration.test.tsx was modified
+[NX Daemon Server] - 2026-06-03T16:02:01.955Z - [REQUEST]: Updated workspace context based on watched changes, recomputing project graph...
+[NX Daemon Server] - 2026-06-03T16:02:01.955Z - [REQUEST]: __tests__/Integration.test.tsx
+[NX Daemon Server] - 2026-06-03T16:02:01.955Z - [REQUEST]: 
+[NX Daemon Server] - 2026-06-03T16:02:01.958Z - Time taken for 'hash changed files from watcher' 0.7608330000075512ms
+[NX Daemon Server] - 2026-06-03T16:02:01.976Z - Time taken for 'build-project-configs' 16.257584000006318ms
+[NX Daemon Server] - 2026-06-03T16:02:01.997Z - [SYNC]: collect registered sync generators
+[NX Daemon Server] - 2026-06-03T16:02:01.998Z - [SYNC]: project graph hash is the same, not collecting task sync generators
+[NX Daemon Server] - 2026-06-03T16:02:01.998Z - [SYNC]: nx.json hash is the same, not collecting global sync generators
+[NX Daemon Server] - 2026-06-03T16:02:01.998Z - Time taken for 'total execution time for createProjectGraph()' 19.01812500000233ms
+[NX Daemon Server] - 2026-06-03T16:04:29.062Z - [WATCHER]: apps/app/package.json was modified
+[NX Daemon Server] - 2026-06-03T16:04:29.062Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2026-06-03T16:04:35.465Z - [REQUEST]: Updated workspace context based on watched changes, recomputing project graph...
+[NX Daemon Server] - 2026-06-03T16:04:35.465Z - [REQUEST]: apps/app/package.json
+[NX Daemon Server] - 2026-06-03T16:04:35.465Z - [REQUEST]: 
+[NX Daemon Server] - 2026-06-03T16:04:35.470Z - Time taken for 'hash changed files from watcher' 0.6085409999941476ms
+[NX Daemon Server] - 2026-06-03T16:04:35.488Z - Time taken for 'build-project-configs' 16.96349999998347ms
+[NX Daemon Server] - 2026-06-03T16:04:35.509Z - [SYNC]: collect registered sync generators
+[NX Daemon Server] - 2026-06-03T16:04:35.509Z - [SYNC]: nx.json hash is the same, not collecting global sync generators
+[NX Daemon Server] - 2026-06-03T16:04:35.509Z - Time taken for 'total execution time for createProjectGraph()' 19.861999999993714ms
+[NX Daemon Server] - 2026-06-03T16:04:55.336Z - [WATCHER]: apps/app/package.json was modified
+[NX Daemon Server] - 2026-06-03T16:04:55.336Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2026-06-03T16:05:01.737Z - [REQUEST]: Updated workspace context based on watched changes, recomputing project graph...
+[NX Daemon Server] - 2026-06-03T16:05:01.737Z - [REQUEST]: apps/app/package.json
+[NX Daemon Server] - 2026-06-03T16:05:01.737Z - [REQUEST]: 
+[NX Daemon Server] - 2026-06-03T16:05:01.739Z - Time taken for 'hash changed files from watcher' 0.11191699997289106ms
+[NX Daemon Server] - 2026-06-03T16:05:01.751Z - Time taken for 'build-project-configs' 10.711000000010245ms
+[NX Daemon Server] - 2026-06-03T16:05:01.771Z - [SYNC]: collect registered sync generators
+[NX Daemon Server] - 2026-06-03T16:05:01.771Z - [SYNC]: project graph hash is the same, not collecting task sync generators
+[NX Daemon Server] - 2026-06-03T16:05:01.771Z - [SYNC]: nx.json hash is the same, not collecting global sync generators
+[NX Daemon Server] - 2026-06-03T16:05:01.771Z - Time taken for 'total execution time for createProjectGraph()' 15.529666999995243ms
+[NX Daemon Server] - 2026-06-03T16:05:02.378Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2026-06-03T16:05:02.379Z - [WATCHER]: Stopping the watcher for /Users/ajay/Documents/ReactNativeAppProduction (sources)
+[NX Daemon Server] - 2026-06-03T16:05:02.379Z - [WATCHER]: Stopping the watcher for /Users/ajay/Documents/ReactNativeAppProduction (outputs)

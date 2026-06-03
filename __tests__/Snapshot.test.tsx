@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactTestRenderer from 'react-test-renderer';
-import { PostCard } from '../src/features/feed/components/organisms/PostCard';
+import { PostCard } from '../apps/app/src/feed/components/organisms/PostCard';
 
 describe('PostCard Snapshots', () => {
   const mockItem = {

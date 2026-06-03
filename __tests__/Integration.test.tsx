@@ -2,14 +2,14 @@ import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../src/features/feed/store/counterSlice';
-import { postsApi } from '../src/shared/store/apiSlice';
-import * as apiSlice from '../src/shared/store/apiSlice';
-import { HomeScreen } from '../src/features/feed/screens/HomeScreen';
-import { ThemeProvider } from '../src/shared/context/ThemeContext';
+import counterReducer from '../apps/app/src/feed/store/counterSlice';
+import { postsApi } from '../apps/app/src/shared/store/apiSlice';
+import * as apiSlice from '../apps/app/src/shared/store/apiSlice';
+import { HomeScreen } from '../apps/app/src/feed/screens/HomeScreen';
+import { ThemeProvider } from '@app/shared/context/ThemeContext';
 
-jest.mock('../src/shared/store/apiSlice', () => {
-  const actual = jest.requireActual('../src/shared/store/apiSlice');
+jest.mock('../apps/app/src/shared/store/apiSlice', () => {
+  const actual = jest.requireActual('../apps/app/src/shared/store/apiSlice');
   return {
     ...actual,
     useGetPostsQuery: jest.fn(),
