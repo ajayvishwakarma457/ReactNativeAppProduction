@@ -25,6 +25,7 @@
     "expo": "~56.0.0",
     "expo-image": "^56.0.9",
     "expo-modules-core": "^56.0.14",
+    "expo-updates": "^56.0.17",
     "graphql": "^16.14.1",
     "react": "19.2.3",
     "react-hook-form": "^7.77.0",

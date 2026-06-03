@@ -1,4 +1,28 @@
 {
   "name": "App",
-  "displayName": "App"
+  "displayName": "App",
+  "expo": {
+    "name": "App",
+    "slug": "react-native-app-production",
+    "version": "1.0.0",
+    "ios": {
+      "bundleIdentifier": "com.ajay.reactnativeappproduction",
+      "buildNumber": "1"
+    },
+    "android": {
+      "package": "com.ajay.reactnativeappproduction",
+      "versionCode": 1
+    },
+    "updates": {
+      "url": "https://u.expo.dev/YOUR-PROJECT-ID"
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "YOUR-PROJECT-ID"
+      }
+    }
+  }
 }
