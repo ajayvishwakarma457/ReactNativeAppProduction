@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import { View, Text, StyleSheet, ScrollView, TextInput, TouchableOpacity, Switch } from 'react-native';
 import { useTheme } from '../../../shared/context/ThemeContext';
+import { useToggle } from '../../../shared/hooks/useToggle';
+import { useInterval } from '../../../shared/hooks/useInterval';
 
 interface CallbackChildProps {
   onClick: () => void;
@@ -50,26 +52,16 @@ export const HooksPlaygroundScreen: React.FC = () => {
   const parentRenders = useRef(0);
   parentRenders.current++;
 
-  // 1. useEffect Timer State
+  // 1. useInterval Timer State
   const [seconds, setSeconds] = useState(0);
-  const [timerActive, setTimerActive] = useState(false);
+  const [timerActive, toggleTimerActive, setTimerActive] = useToggle(false);
 
-  useEffect(() => {
-    let interval: any = null;
-    if (timerActive) {
-      interval = setInterval(() => {
-        setSeconds((prev) => prev + 1);
-      }, 1000);
-    }
-    return () => {
-      if (interval) {
-        clearInterval(interval);
-      }
-    };
-  }, [timerActive]);
+  useInterval(() => {
+    setSeconds((prev) => prev + 1);
+  }, timerActive ? 1000 : null);
 
   // 2. useCallback States
-  const [useMemoizedCallback, setUseMemoizedCallback] = useState(true);
+  const [useMemoizedCallback, toggleMemoizedCallback] = useToggle(true);
   const [callbackCount, setCallbackCount] = useState(0);
   const [dummyState, setDummyState] = useState(0); // unrelated state to force parent render
 
@@ -82,7 +74,7 @@ export const HooksPlaygroundScreen: React.FC = () => {
   };
 
   // 3. useMemo States
-  const [useMemoizedCalculation, setUseMemoizedCalculation] = useState(true);
+  const [useMemoizedCalculation, toggleMemoizedCalculation] = useToggle(true);
   const [primeIndex, setPrimeIndex] = useState(1500); // 1500th prime
   const [unrelatedInput, setUnrelatedInput] = useState('');
 
@@ -125,7 +117,7 @@ export const HooksPlaygroundScreen: React.FC = () => {
           <View style={styles.timerActions}>
             <TouchableOpacity 
               style={[styles.timerBtn, timerActive ? styles.pauseBtn : styles.startBtn]} 
-              onPress={() => setTimerActive(!timerActive)}
+              onPress={toggleTimerActive}
             >
               <Text style={styles.timerBtnText}>{timerActive ? 'Pause' : 'Start'}</Text>
             </TouchableOpacity>
@@ -150,7 +142,7 @@ export const HooksPlaygroundScreen: React.FC = () => {
           <Text style={[styles.toggleLabel, { color: theme.text }]}>Memoize callback with useCallback</Text>
           <Switch 
             value={useMemoizedCallback} 
-            onValueChange={setUseMemoizedCallback} 
+            onValueChange={toggleMemoizedCallback} 
             thumbColor={theme.primary}
             trackColor={{ false: theme.border, true: theme.backgroundAlt }}
           />
@@ -180,7 +172,7 @@ export const HooksPlaygroundScreen: React.FC = () => {
           <Text style={[styles.toggleLabel, { color: theme.text }]}>Memoize computation with useMemo</Text>
           <Switch 
             value={useMemoizedCalculation} 
-            onValueChange={setUseMemoizedCalculation} 
+            onValueChange={toggleMemoizedCalculation} 
             thumbColor={theme.primary}
             trackColor={{ false: theme.border, true: theme.backgroundAlt }}
           />

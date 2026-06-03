@@ -18,6 +18,7 @@ import {
 import { ApolloProvider, useQuery } from '@apollo/client/react';
 import { Image } from 'expo-image';
 import { useTheme } from '../../../shared/context/ThemeContext';
+import { useDebounce } from '../../../shared/hooks/useDebounce';
 
 // ----------------------------------------------------
 // Apollo GraphQL Client Setup
@@ -70,15 +71,16 @@ export interface RestPost {
 // ----------------------------------------------------
 const GraphQLTabContent: React.FC = () => {
   const { theme } = useTheme();
-  const [searchName, setSearchName] = useState('Rick');
+  const [inputText, setInputText] = useState('Rick');
+  const debouncedSearchName = useDebounce(inputText, 500);
 
   const { data, loading, error, refetch } = useQuery<{ characters: { results: Character[] } }>(GET_CHARACTERS, {
-    variables: { name: searchName },
+    variables: { name: debouncedSearchName },
     client: apolloClient,
   });
 
   const handleSearchChange = (text: string) => {
-    setSearchName(text);
+    setInputText(text);
   };
 
   const renderCharacter = ({ item }: { item: Character }) => (
@@ -106,7 +108,7 @@ const GraphQLTabContent: React.FC = () => {
 
       <TextInput
         style={[styles.inputBox, { backgroundColor: theme.card, color: theme.text, borderColor: theme.cardBorder }]}
-        value={searchName}
+        value={inputText}
         onChangeText={handleSearchChange}
         placeholder="Type character name (e.g. Rick, Morty)..."
         placeholderTextColor={theme.textMuted}
