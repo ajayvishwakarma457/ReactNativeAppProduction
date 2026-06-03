@@ -15,10 +15,10 @@ export interface PostCardProps {
   onLikePress: (id: number) => void;
 }
 
-const PostCard = React.memo(({ item, theme, isLiked, onPress, onLikePress }: PostCardProps) => {
+export const PostCard = React.memo(({ item, theme, isLiked, onPress, onLikePress }: PostCardProps) => {
   const handlePress = () => onPress(item);
   const handleLikePress = (e: any) => {
-    e.stopPropagation();
+    e?.stopPropagation?.();
     onLikePress(item.id);
   };
 
