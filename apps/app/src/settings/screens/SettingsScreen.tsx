@@ -1,11 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme } from '@app/shared/context/ThemeContext';
+import { deviceHelper } from '@app/shared/services/deviceHelper';
 
 export const SettingsScreen: React.FC = () => {
   const safeAreaInsets = useSafeAreaInsets();
   const { theme, themeMode, setThemeMode } = useTheme();
+  const [deviceModel, setDeviceModel] = useState('Loading...');
+
+  useEffect(() => {
+    let active = true;
+    deviceHelper.getDeviceModel()
+      .then((model) => {
+        if (active) setDeviceModel(model);
+      })
+      .catch(() => {
+        if (active) setDeviceModel('Unknown');
+      });
+    return () => {
+      active = false;
+    };
+  }, []);
 
   return (
     <View style={[styles.detailsContainer, { paddingTop: safeAreaInsets.top, backgroundColor: theme.background }]}>
@@ -39,6 +55,10 @@ export const SettingsScreen: React.FC = () => {
         <View style={[styles.settingsItem, { borderBottomColor: theme.cardBorder }]}>
           <Text style={[styles.settingsLabel, { color: theme.text }]}>JS Engine</Text>
           <Text style={[styles.settingsValue, { color: theme.primary }]}>Hermes</Text>
+        </View>
+        <View style={[styles.settingsItem, { borderBottomColor: theme.cardBorder }]}>
+          <Text style={[styles.settingsLabel, { color: theme.text }]}>Device Model</Text>
+          <Text style={[styles.settingsValue, { color: theme.primary }]}>{deviceModel}</Text>
         </View>
       </View>
     </View>
