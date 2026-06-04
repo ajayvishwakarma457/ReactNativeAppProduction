@@ -1,0 +1,29 @@
+{
+  "name": "@app/core-sdk",
+  "version": "1.0.0",
+  "description": "Core SDK client and logging library for internal and public usage",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts --clean",
+    "watch": "tsup src/index.ts --format cjs,esm --dts --watch"
+  },
+  "keywords": [
+    "sdk",
+    "client",
+    "logger"
+  ],
+  "author": "Ajay",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": ">=18.0.0"
+  }
+}
