@@ -5,7 +5,6 @@
   "scripts": {
     "android": "npx react-native run-android",
     "ios": "npx react-native run-ios",
-    "web": "npx expo start --web",
     "start": "npx react-native start"
   },
   "dependencies": {
