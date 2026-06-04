@@ -50,5 +50,10 @@
   },
   "devDependencies": {
     "@react-native-community/cli": "20.1.0"
+  },
+  "codegenConfig": {
+    "name": "AppSpec",
+    "type": "modules",
+    "jsSrcsDir": "src/shared/specs"
   }
 }

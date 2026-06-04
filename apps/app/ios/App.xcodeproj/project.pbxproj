@@ -11,13 +11,14 @@
 		0D035041EE3A0739E7179E1E /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F561FE2C9E067A0694EB3DCA /* ExpoModulesProvider.swift */; };
 		0D5AF837140E59A271BEA1C4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 17C33DD853F155A6FFC9FF43 /* GoogleService-Info.plist */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		3C4DA56B283D4B1FBB1FD284 /* FastMathModule.mm in Sources */ = {isa = PBXBuildFile; fileRef = A49860CBA26B4812BE07AA5C /* FastMathModule.mm */; };
 		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
 		761780ED2CA45674006654F1 /* DeviceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654F1 /* DeviceHelper.swift */; };
 		761780ED2CA45674006654F2 /* DeviceHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654F2 /* DeviceHelper.m */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		C6E730B73FCB4D47A04A3F5D /* FastMathJSI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71FBBB6DD7DD476D8A6588DD /* FastMathJSI.cpp */; };
 		DEDF8352AB1025A2CC8A7DB3 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
-		C6E730B73FCB4D47A04A3F5D /* FastMathJSI.cpp in Resources */ = {isa = PBXBuildFile; fileRef = 71FBBB6DD7DD476D8A6588DD /* FastMathJSI.cpp */; };
-		3C4DA56B283D4B1FBB1FD284 /* FastMathModule.mm in Resources */ = {isa = PBXBuildFile; fileRef = A49860CBA26B4812BE07AA5C /* FastMathModule.mm */; };
+		22AD0FD3003D42EBA0E52852 /* BatteryStatus.mm in Resources */ = {isa = PBXBuildFile; fileRef = F2009A8D09B5426D8DC1C54D /* BatteryStatus.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,15 +31,17 @@
 		3B4392A12AC88292D35C810B /* Pods-App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App.debug.xcconfig"; path = "Target Support Files/Pods-App/Pods-App.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App.release.xcconfig"; path = "Target Support Files/Pods-App/Pods-App.release.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-App.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-App.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		71FBBB6DD7DD476D8A6588DD /* FastMathJSI.cpp */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = sourcecode.cpp.cpp; name = FastMathJSI.cpp; path = App/FastMathJSI.cpp; sourceTree = "<group>"; };
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = App/AppDelegate.swift; sourceTree = "<group>"; };
 		761780EC2CA45674006654F1 /* DeviceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DeviceHelper.swift; path = App/DeviceHelper.swift; sourceTree = "<group>"; };
 		761780EC2CA45674006654F2 /* DeviceHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = DeviceHelper.m; path = App/DeviceHelper.m; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = App/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A49860CBA26B4812BE07AA5C /* FastMathModule.mm */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = sourcecode.cpp.objcpp; name = FastMathModule.mm; path = App/FastMathModule.mm; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F561FE2C9E067A0694EB3DCA /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-App/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
-		CB98155748AF4EFF8F845687 /* FastMathJSI.h */ = {isa = PBXFileReference; name = "FastMathJSI.h"; path = "App/FastMathJSI.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
-		71FBBB6DD7DD476D8A6588DD /* FastMathJSI.cpp */ = {isa = PBXFileReference; name = "FastMathJSI.cpp"; path = "App/FastMathJSI.cpp"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = sourcecode.cpp.cpp; explicitFileType = undefined; includeInIndex = 0; };
-		A49860CBA26B4812BE07AA5C /* FastMathModule.mm */ = {isa = PBXFileReference; name = "FastMathModule.mm"; path = "App/FastMathModule.mm"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = sourcecode.cpp.objcpp; explicitFileType = undefined; includeInIndex = 0; };
+		F943453547714306BC70B354 /* FastMathJSI.h */ = {isa = PBXFileReference; name = "FastMathJSI.h"; path = "App/FastMathJSI.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		6633C42A85E54CBA83937D30 /* BatteryStatus.h */ = {isa = PBXFileReference; name = "BatteryStatus.h"; path = "App/BatteryStatus.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		F2009A8D09B5426D8DC1C54D /* BatteryStatus.mm */ = {isa = PBXFileReference; name = "BatteryStatus.mm"; path = "App/BatteryStatus.mm"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = sourcecode.cpp.objcpp; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -325,8 +328,9 @@
 				761780ED2CA45674006654F1 /* DeviceHelper.swift in Sources */,
 				761780ED2CA45674006654F2 /* DeviceHelper.m in Sources */,
 				0D035041EE3A0739E7179E1E /* ExpoModulesProvider.swift in Sources */,
-				C6E730B73FCB4D47A04A3F5D /* FastMathJSI.cpp in Resources */,
-				3C4DA56B283D4B1FBB1FD284 /* FastMathModule.mm in Resources */,
+				C6E730B73FCB4D47A04A3F5D /* FastMathJSI.cpp in Sources */,
+				3C4DA56B283D4B1FBB1FD284 /* FastMathModule.mm in Sources */,
+				22AD0FD3003D42EBA0E52852 /* BatteryStatus.mm in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

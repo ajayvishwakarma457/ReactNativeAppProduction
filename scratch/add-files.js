@@ -31,6 +31,10 @@ myProj.parse(function (err) {
   myProj.addSourceFile('App/FastMathJSI.cpp', { lastKnownFileType: 'sourcecode.cpp.cpp' }, 'App');
   myProj.addSourceFile('App/FastMathModule.mm', { lastKnownFileType: 'sourcecode.cpp.objcpp' }, 'App');
 
+  // Add custom Turbo Module files
+  myProj.addHeaderFile('App/BatteryStatus.h', { lastKnownFileType: 'sourcecode.c.h' }, 'App');
+  myProj.addSourceFile('App/BatteryStatus.mm', { lastKnownFileType: 'sourcecode.cpp.objcpp' }, 'App');
+
   // Restore original paths
   for (const key in originalPaths) {
     if (originalPaths[key] === undefined) {
@@ -42,5 +46,5 @@ myProj.parse(function (err) {
 
   // Write changes
   fs.writeFileSync(projectPath, myProj.writeSync());
-  console.log('Successfully added native files with correct subfolder paths to Xcode project!');
+  console.log('Successfully added custom Turbo Module files to Xcode project!');
 });
