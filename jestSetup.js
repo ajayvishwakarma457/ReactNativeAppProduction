@@ -201,3 +201,20 @@ global.WebSocket = class MockWebSocket {
     if (this.onclose) this.onclose();
   }
 };
+
+// Mock expo-secure-store globally
+jest.mock('expo-secure-store', () => {
+  const store = {};
+  return {
+    setItemAsync: jest.fn(async (key, value) => {
+      store[key] = value;
+    }),
+    getItemAsync: jest.fn(async (key) => {
+      return store[key] || null;
+    }),
+    deleteItemAsync: jest.fn(async (key) => {
+      delete store[key];
+    }),
+  };
+});
+
