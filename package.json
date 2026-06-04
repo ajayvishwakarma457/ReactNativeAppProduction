@@ -9,6 +9,7 @@
   "scripts": {
     "android": "npm run android -w apps/app",
     "ios": "npm run ios -w apps/app",
+    "web": "npm run web -w apps/app",
     "start": "npm start -w apps/app",
     "test": "jest"
   },

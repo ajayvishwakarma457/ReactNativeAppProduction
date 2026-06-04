@@ -5,11 +5,15 @@
   "scripts": {
     "android": "npx react-native run-android",
     "ios": "npx react-native run-ios",
+    "web": "npx expo start --web",
     "start": "npx react-native start"
   },
   "dependencies": {
     "@app/shared": "*",
-    "react-native": "0.85.3"
+    "@expo/metro-runtime": "~56.0.13",
+    "react-dom": "19.2.3",
+    "react-native": "0.85.3",
+    "react-native-web": "^0.21.2"
   },
   "devDependencies": {
     "@react-native-community/cli": "20.1.0"
