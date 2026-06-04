@@ -1,69 +1,142 @@
-# CI/CD and DevOps Guide (GitHub Actions & Expo EAS)
+# React Native Production CI/CD Setup Guide (GitHub Actions & Expo EAS)
 
-Automating code quality validation (CI) and build deployment (CD) ensures rapid release cycles and stability. This guide details our industry-standard pipeline utilizing **GitHub Actions** for testing and verification, and **Expo EAS (Expo Application Services)** for automated cloud builds and deployments.
-
----
-
-## 1. Continuous Integration (CI): GitHub Actions
-
-We have configured a GitHub Actions workflow to run quality validation automatically on every commit and pull request.
-
-* **Configuration File**: [.github/workflows/ci.yml](file:///Users/ajay/Documents/ReactNativeAppProduction/.github/workflows/ci.yml)
-* **Pipeline Jobs**:
-  1. **Checkout Code**: Grabs the latest commit.
-  2. **Setup Node.js**: Installs Node environment caching npm packages.
-  3. **Install Dependencies**: Installs workspace libraries with `--legacy-peer-deps`.
-  4. **Run TypeScript Compile Check**: Performs static type checks using `npx tsc --noEmit`.
-  5. **Run Jest Test Suite**: Executes all Jest unit and integration tests.
+This guide documents the complete step-by-step process to set up a fully automated, industry-standard Continuous Integration (CI) and Continuous Delivery (CD) pipeline using **GitHub Actions** and **Expo EAS (Expo Application Services)**.
 
 ---
 
-## 2. Continuous Delivery (CD): Expo EAS Cloud Builds
+## 1. Architecture Overview
 
-EAS compiles the application binaries inside clean cloud virtual environments (macOS for iOS, Linux for Android), signing the code with App Store / Google Play credentials automatically.
+```mermaid
+graph TD
+    A[Local Code Commit/PR] -->|Push| B[GitHub Repository]
+    B -->|Trigger CI workflow| C[GitHub Actions Runner]
+    C -->|Run Validation| D[TS Compile & Jest Tests]
+    D -->|Passed & Tagged Release v*| E[EAS Build Job]
+    E -->|Trigger Cloud Build| F[Expo EAS Cloud Servers]
+    F -->|Compile iOS/Android & Sign| G[Apple App Store / Google Play]
+    F -->|Publish OTA Update| H[Devices running current Native shell]
+```
 
-### Automated CD with GitHub Actions
-To automate builds and store submissions when code is merged or a release tag is created:
+---
 
-#### Step 1: Generate an Expo Access Token
-1. Go to your [Expo Account Settings](https://expo.dev/settings/access-tokens).
-2. Click **Create Token** and copy the generated token.
+## 2. Local Setup & EAS Configuration
 
-#### Step 2: Configure GitHub Secrets
-1. In your GitHub repository, navigate to **Settings > Secrets and variables > Actions**.
-2. Create a new repository secret:
-   * Name: `EXPO_TOKEN`
-   * Value: *[Your Expo Access Token]*
+Before configuring GitHub Actions, EAS must be set up locally.
 
-#### Step 3: Add the CD Job to GitHub Actions
-You can append a build job to your workflow file to trigger builds automatically on push events targeting release branches or tags:
+### Step 1: Install EAS CLI Globally
+```bash
+npm install -g eas-cli
+```
 
+### Step 2: Login to your Expo Account
+```bash
+eas login
+```
+
+### Step 3: Initialize EAS in your Project
+Ensure you run this command at the root of the project:
+```bash
+eas project:init
+```
+This registers the application with your Expo dashboard and generates an `eas.json` configuration file.
+
+### Step 4: Configure `eas.json`
+Your `eas.json` should have clear profiles for development, preview, and production:
+
+```json
+{
+  "cli": {
+    "version": ">= 9.0.0"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
+    },
+    "preview": {
+      "distribution": "internal",
+      "channel": "preview"
+    },
+    "production": {
+      "channel": "production"
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}
+```
+
+---
+
+## 3. GitHub Actions CI/CD Pipeline Config
+
+The CI/CD pipeline is defined in [ci.yml](file:///Users/ajay/Documents/ReactNativeAppProduction/.github/workflows/ci.yml). It has two main jobs:
+1. **validate**: Run on all pushes and pull requests to the `main` branch to guarantee lint/compile validity and test compliance.
+2. **deploy**: Triggered only when a release version tag (e.g. `v1.2.3`) is pushed. This builds and auto-submits the app to the app stores.
+
+### Full Pipeline Workflow Code:
 ```yaml
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+    tags:
+      - 'v*'
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm install --legacy-peer-deps
+
+      - name: Run TypeScript Compile Check
+        run: npx tsc --noEmit -p apps/app/tsconfig.json
+
+      - name: Run Jest Test Suite
+        run: npm test
+
   deploy:
+    name: EAS Build & Submit
     needs: validate
-    if: startsWith(github.ref, 'refs/tags/v') # Trigger only on version tags (e.g. v1.0.0)
+    if: startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Setup Node & EAS
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
-      
+          cache: 'npm'
+
       - name: Install EAS CLI
         run: npm install -g eas-cli
 
       - name: Install Dependencies
         run: npm install --legacy-peer-deps
 
-      - name: Build & Submit (Android)
+      - name: Build & Submit Android to Play Store
         run: eas build --platform android --profile production --non-interactive --auto-submit
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
 
-      - name: Build & Submit (iOS)
+      - name: Build & Submit iOS to App Store
         run: eas build --platform ios --profile production --non-interactive --auto-submit
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
@@ -71,27 +144,71 @@ You can append a build job to your workflow file to trigger builds automatically
 
 ---
 
-## 3. EAS Update Rollout & Rollback Strategies
+## 4. Connecting Credentials and Secrets
 
-EAS Update deploys JavaScript and asset changes directly to active devices matching the current native runtime shell version.
+For the deployment stage to run successfully, EAS needs credentials to sign your builds and submit them.
 
-### Safe Rollout Strategy (Staging -> Production)
-1. **Branch Deployments**: Maintain distinct git branches and channels matching those environments:
-   * `preview` branch updates the `preview` EAS update channel (for internal QA testing).
-   * `main` branch updates the `production` EAS update channel.
-2. **Dynamic Testing**: Verify changes in the `preview` build before pushing code changes to `main`.
+### Step 1: Link Expo Account Token to GitHub
+1. Navigate to your [Expo Access Tokens](https://expo.dev/settings/access-tokens) page.
+2. Click **Create Token** (provide a descriptive name like "GitHub Actions CD").
+3. Copy the token.
+4. Open your GitHub Repository settings, go to **Settings > Secrets and variables > Actions**.
+5. Click **New repository secret**.
+6. Set Name to `EXPO_TOKEN` and paste the token as the Value.
+
+### Step 2: iOS & Android Credentials setup in EAS
+1. **iOS Provisioning**: Run the following command locally once to set up Apple credentials:
+   ```bash
+   eas credentials:run --platform ios
+   ```
+   Follow the prompts to log in to your Apple Developer account. EAS will automatically generate and manage the distribution certificate and provisioning profile in the cloud.
+2. **Android Keystore**: Run:
+   ```bash
+   eas credentials:run --platform android
+   ```
+   EAS will generate a new keystore or allow you to import an existing one to sign the release AAB/APK.
+
+---
+
+## 5. Deployment and Submission Steps
+
+To trigger a production release build and auto-submission to Google Play and Apple App Store, execute the following steps locally:
+
+1. **Commit and push all changes**: Ensure the workspace is clean and committed.
+2. **Create a version tag**:
+   ```bash
+   git tag v1.0.0
+   ```
+3. **Push the tag to GitHub**:
+   ```bash
+   git push origin v1.0.0
+   ```
+This triggers the `deploy` job on GitHub Actions, which invokes EAS Cloud Build to compile, sign, and upload the build binaries to Apple TestFlight/Google Play Console directly.
+
+---
+
+## 6. Over-the-Air (OTA) Updates & Rollbacks
+
+EAS Update allows you to bypass app store review times by delivering instant patches (bug fixes/UI tweaks) to users' devices.
+
+### Publishing an Update
+To deploy JavaScript updates instantly to the `production` channel:
+```bash
+npx eas update --branch production --message "Fix critical dashboard checkout crash"
+```
 
 ### Rollback Strategy (Instant Recovery)
-If an update containing a bug is pushed to production, you can immediately roll back the environment to the previous stable release bundle:
+If an update introduces a regression, you can rollback immediately to a previous stable state:
 
-1. **Rollback Command**:
-   Revert the channel's active update to a previous stable publish ID:
+1. **EAS Rollback Command**:
    ```bash
    npx eas update:rollback --channel production
    ```
-2. **Re-routing Traffic**:
-   Alternatively, redeploy the git commit corresponding to the last stable release:
+   Follow the CLI prompts to select the last known stable update publish ID.
+2. **Alternative Git Rollback**:
+   Checkout the last stable git commit, and re-publish the stable JavaScript bundle:
    ```bash
-   npx eas update --branch production --message "Rollback to stable version"
+   git checkout tags/v0.9.9
+   npx eas update --branch production --message "Reverted to stable version v0.9.9"
    ```
-This instantly re-routes active devices to the safe JavaScript bundle on the next launch, neutralizing bugs within seconds without requiring App Store reviews.
+This redirects active user devices to the working stable code on their next app restart (or instantly, depending on your OTA update policy configuration in `app.json`).
