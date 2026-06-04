@@ -35,6 +35,10 @@ myProj.parse(function (err) {
   myProj.addHeaderFile('App/BatteryStatus.h', { lastKnownFileType: 'sourcecode.c.h' }, 'App');
   myProj.addSourceFile('App/BatteryStatus.mm', { lastKnownFileType: 'sourcecode.cpp.objcpp' }, 'App');
 
+  // Add custom Fabric Component files
+  myProj.addHeaderFile('App/RTNCenteredText.h', { lastKnownFileType: 'sourcecode.c.h' }, 'App');
+  myProj.addSourceFile('App/RTNCenteredText.mm', { lastKnownFileType: 'sourcecode.cpp.objcpp' }, 'App');
+
   // Restore original paths
   for (const key in originalPaths) {
     if (originalPaths[key] === undefined) {
@@ -46,5 +50,5 @@ myProj.parse(function (err) {
 
   // Write changes
   fs.writeFileSync(projectPath, myProj.writeSync());
-  console.log('Successfully added custom Turbo Module files to Xcode project!');
+  console.log('Successfully added custom Turbo Module and Fabric Component files to Xcode project!');
 });

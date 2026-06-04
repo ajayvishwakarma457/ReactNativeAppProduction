@@ -53,7 +53,7 @@
   },
   "codegenConfig": {
     "name": "AppSpec",
-    "type": "modules",
+    "type": "all",
     "jsSrcsDir": "src/shared/specs"
   }
 }

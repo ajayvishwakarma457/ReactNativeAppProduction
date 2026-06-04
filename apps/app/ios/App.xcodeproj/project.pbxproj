@@ -11,6 +11,7 @@
 		0D035041EE3A0739E7179E1E /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F561FE2C9E067A0694EB3DCA /* ExpoModulesProvider.swift */; };
 		0D5AF837140E59A271BEA1C4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 17C33DD853F155A6FFC9FF43 /* GoogleService-Info.plist */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		22AD0FD3003D42EBA0E52852 /* BatteryStatus.mm in Sources */ = {isa = PBXBuildFile; fileRef = F2009A8D09B5426D8DC1C54D /* BatteryStatus.mm */; };
 		3C4DA56B283D4B1FBB1FD284 /* FastMathModule.mm in Sources */ = {isa = PBXBuildFile; fileRef = A49860CBA26B4812BE07AA5C /* FastMathModule.mm */; };
 		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
 		761780ED2CA45674006654F1 /* DeviceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654F1 /* DeviceHelper.swift */; };
@@ -18,7 +19,7 @@
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		C6E730B73FCB4D47A04A3F5D /* FastMathJSI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71FBBB6DD7DD476D8A6588DD /* FastMathJSI.cpp */; };
 		DEDF8352AB1025A2CC8A7DB3 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
-		22AD0FD3003D42EBA0E52852 /* BatteryStatus.mm in Resources */ = {isa = PBXBuildFile; fileRef = F2009A8D09B5426D8DC1C54D /* BatteryStatus.mm */; };
+		69F4634BE6B348E48898E135 /* RTNCenteredText.mm in Resources */ = {isa = PBXBuildFile; fileRef = 152166C2FA0846A3ABE1172E /* RTNCenteredText.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,10 +39,12 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = App/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A49860CBA26B4812BE07AA5C /* FastMathModule.mm */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = sourcecode.cpp.objcpp; name = FastMathModule.mm; path = App/FastMathModule.mm; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		F2009A8D09B5426D8DC1C54D /* BatteryStatus.mm */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = sourcecode.cpp.objcpp; name = BatteryStatus.mm; path = App/BatteryStatus.mm; sourceTree = "<group>"; };
 		F561FE2C9E067A0694EB3DCA /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-App/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
-		F943453547714306BC70B354 /* FastMathJSI.h */ = {isa = PBXFileReference; name = "FastMathJSI.h"; path = "App/FastMathJSI.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
-		6633C42A85E54CBA83937D30 /* BatteryStatus.h */ = {isa = PBXFileReference; name = "BatteryStatus.h"; path = "App/BatteryStatus.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
-		F2009A8D09B5426D8DC1C54D /* BatteryStatus.mm */ = {isa = PBXFileReference; name = "BatteryStatus.mm"; path = "App/BatteryStatus.mm"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = sourcecode.cpp.objcpp; explicitFileType = undefined; includeInIndex = 0; };
+		68D0060B4A1044DA9AD3F59E /* FastMathJSI.h */ = {isa = PBXFileReference; name = "FastMathJSI.h"; path = "App/FastMathJSI.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		FE1CC7B6651645F796E5D234 /* BatteryStatus.h */ = {isa = PBXFileReference; name = "BatteryStatus.h"; path = "App/BatteryStatus.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		BBBA07BDF5DC480F91DE6254 /* RTNCenteredText.h */ = {isa = PBXFileReference; name = "RTNCenteredText.h"; path = "App/RTNCenteredText.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		152166C2FA0846A3ABE1172E /* RTNCenteredText.mm */ = {isa = PBXFileReference; name = "RTNCenteredText.mm"; path = "App/RTNCenteredText.mm"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = sourcecode.cpp.objcpp; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -330,7 +333,8 @@
 				0D035041EE3A0739E7179E1E /* ExpoModulesProvider.swift in Sources */,
 				C6E730B73FCB4D47A04A3F5D /* FastMathJSI.cpp in Sources */,
 				3C4DA56B283D4B1FBB1FD284 /* FastMathModule.mm in Sources */,
-				22AD0FD3003D42EBA0E52852 /* BatteryStatus.mm in Resources */,
+				22AD0FD3003D42EBA0E52852 /* BatteryStatus.mm in Sources */,
+				69F4634BE6B348E48898E135 /* RTNCenteredText.mm in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

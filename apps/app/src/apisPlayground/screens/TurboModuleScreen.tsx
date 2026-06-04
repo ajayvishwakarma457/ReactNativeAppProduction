@@ -4,6 +4,7 @@ import { useTheme } from '@app/shared/context/ThemeContext';
 import { AppText } from '@app/shared/components/atoms/AppText';
 import { AppButton } from '@app/shared/components/atoms/AppButton';
 import BatteryStatus from '../../shared/specs/NativeBatteryStatus';
+import RTNCenteredText from '../../shared/specs/CenteredTextNativeComponent';
 
 export const TurboModuleScreen: React.FC = () => {
   const { theme } = useTheme();
@@ -58,6 +59,12 @@ export const TurboModuleScreen: React.FC = () => {
         )}
 
         <AppButton title="Fetch Battery Status (JSI)" onPress={fetchStatus} />
+
+        <RTNCenteredText
+          text="🏎️ Direct draw via C++ Fabric Component!"
+          textColor={theme.primary}
+          style={styles.fabricComponent}
+        />
       </View>
     </View>
   );
@@ -102,5 +109,15 @@ const styles = StyleSheet.create({
   },
   loader: {
     marginVertical: 24,
+  },
+  fabricComponent: {
+    width: '100%',
+    height: 60,
+    marginTop: 24,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderStyle: 'dashed',
+    borderColor: '#6366F1',
+    backgroundColor: 'rgba(99, 102, 241, 0.03)',
   },
 });
