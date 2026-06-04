@@ -41,6 +41,29 @@
 		<false/>
 		<key>NSAllowsLocalNetworking</key>
 		<true/>
+		<key>NSPinnedDomains</key>
+		<dict>
+			<key>rnp-app.com</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSIdentityPinnedPublicKeyHashes</key>
+				<array>
+					<dict>
+						<key>Algorithm</key>
+						<string>Rsa2048</string>
+						<key>PublicKeyHash</key>
+						<string>rnp-app-primary-pin-placeholder-base64=</string>
+					</dict>
+					<dict>
+						<key>Algorithm</key>
+						<string>Rsa2048</string>
+						<key>PublicKeyHash</key>
+						<string>rnp-app-backup-pin-placeholder-base64=</string>
+					</dict>
+				</array>
+			</dict>
+		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>This app requires location access when open to demonstrate runtime permission request states.</string>

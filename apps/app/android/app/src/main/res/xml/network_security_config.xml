@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config>
+        <!-- Specify target domains to enforce certificate pinning -->
+        <domain includeSubdomains="true">rnp-app.com</domain>
+        
+        <pin-set expiration="2027-12-31">
+            <!-- Primary Certificate Public Key Pin (SHA-256) -->
+            <pin digest="SHA-256">rnp-app-primary-pin-placeholder-base64=</pin>
+            
+            <!-- Backup Certificate Public Key Pin (Required by Android/iOS to prevent lockouts) -->
+            <pin digest="SHA-256">rnp-app-backup-pin-placeholder-base64=</pin>
+        </pin-set>
+    </domain-config>
+</network-security-config>
