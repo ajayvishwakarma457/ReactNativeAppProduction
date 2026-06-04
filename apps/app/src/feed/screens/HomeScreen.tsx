@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'rea
 import { FlashList } from '@shopify/flash-list';
 import { Image } from 'expo-image';
 import { useTheme } from '@app/shared/context/ThemeContext';
+import Config from 'react-native-config';
 import { useGetPostsQuery } from '../../shared/store/apiSlice';
 import { useAppDispatch, useAppSelector, RootState } from '../../shared/store';
 import { toggleLikePost } from '../store/counterSlice';
@@ -17,6 +18,10 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
   
   // RTK Query API Hook call
   const { data: posts, error, isLoading, isFetching, refetch } = useGetPostsQuery(3);
+  
+  React.useEffect(() => {
+    console.log('[HomeScreen RTK Query]', { posts, error, isLoading, isFetching, apiUrl: Config.API_URL });
+  }, [posts, error, isLoading, isFetching]);
   
   // Redux store selections & dispatch
   const dispatch = useAppDispatch();
