@@ -35,28 +35,58 @@ While micro-frontends sound appealing for huge enterprises, implementing them in
 Instead of loading code over the network at **runtime**, we use an **Nx Monorepo** to separate code into independent modules at **compile-time**. This gives you clean team boundaries and code isolation without any native runtime risks.
 
 ### Workspace Folder Structure
-Here is how our current modular monorepo workspace is structured to achieve clean separation:
+Below is the detailed file-level layout of the modular Nx monorepo workspace, illustrating how code separation is managed:
 
 ```text
 ReactNativeAppProduction/ (Workspace Root)
-├── apps/
-│   └── app/                        # Main Native App Shell
-│       ├── android/                # Native Android Project
-│       ├── ios/                    # Native iOS Project
-│       ├── src/
-│       │   └── shared/             # App-specific glue logic (Store, Navigation)
-│       └── package.json
-├── libs/
-│   └── shared/                     # Scoped shared workspace libraries
-│       ├── src/
-│       │   ├── components/         # Reusable UI Atoms and Molecules
-│       │   ├── context/            # Shared React Context providers
-│       │   ├── hooks/              # Custom React Hooks Library
-│       │   ├── services/           # Secure Storage, API Clients, Push Notifications
-│       │   └── types/              # Type-safe TypeScript Interfaces
-│       └── package.json
-├── package.json                    # Root dependencies
-└── tsconfig.base.json              # Scoped imports mapping (@app/shared/*)
+├── package.json                         # Global dependencies & monorepo scripts
+├── tsconfig.base.json                   # Path mappings (@app/shared/* -> libs/shared/src/*)
+├── nx.json                              # Nx workspace execution & project configs
+├── apps/                                # APPLICATION DIRECTORY
+│   └── app/                             # Native Application Bundle Root
+│       ├── package.json                 # Native application dependencies
+│       ├── metro.config.js              # Resolves path mappings to shared packages
+│       ├── App.tsx                      # App entry point importing from @app/shared
+│       ├── android/                     # Android native project configurations
+│       ├── ios/                         # iOS native project configurations
+│       └── src/                         # App runtime feature folder
+│           ├── shared/                  # App-specific glue components
+│           │   ├── navigation/          # React Navigation setup
+│           │   └── store/               # Redux store configurations
+│           ├── apisPlayground/          # Network API test screens
+│           ├── feed/                    # Feed feature screens
+│           ├── hooksPlayground/         # React hooks test dashboard
+│           ├── permissions/             # Permission management views
+│           ├── persistence/             # Local database playground
+│           ├── profile/                 # User Profile screen components
+│           └── settings/                # Settings module screen components
+├── libs/                                # REUSABLE MODULES DIRECTORY
+│   └── shared/                          # Scoped shared libraries root
+│       ├── package.json                 # Shared workspace package definitions
+│       ├── tsconfig.json                # Shared library compiler rules
+│       └── src/                         # Shared library codebase
+│           ├── index.ts                 # Entrypoint exporting all shared components
+│           ├── components/              # Scoped component layout
+│           │   ├── ErrorBoundary.tsx    # App crash-catching fallback component
+│           │   ├── atoms/               # Core atomic components (AppButton, AppText)
+│           │   └── molecules/           # Composite UI molecules (FormField)
+│           ├── context/                 # Context providers (e.g. ThemeContext)
+│           ├── hooks/                   # Custom utility React hooks
+│           │   ├── useAppState.ts       # Subscribes to device foreground/background status
+│           │   ├── useBackHandler.ts    # Android hardware back button handler
+│           │   ├── useDebounce.ts       # Input value debouncer
+│           │   ├── useInteractionManager.ts # Defers state updates until animations finish
+│           │   ├── useInterval.ts       # Declares custom intervals
+│           │   ├── useKeyboard.ts       # Listens to virtual keyboard dimensions
+│           │   └── useToggle.ts         # Generic state toggle utility
+│           ├── services/                # Device & Cloud communication layer
+│           │   ├── api.ts               # Global Axios/network API client
+│           │   ├── backgroundTasks.ts   # Runs headless JS background jobs
+│           │   ├── deviceHelper.ts      # Native module reading device hardware
+│           │   ├── notifications.ts     # Configures push notification listeners
+│           │   ├── secureStorage.ts     # Encrypted secure store wrapper
+│           │   └── storage.ts           # High-speed MMKV storage client
+│           └── types/                   # Shared TypeScript models and interfaces
 ```
 
 ---
