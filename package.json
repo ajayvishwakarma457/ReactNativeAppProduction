@@ -9,11 +9,13 @@
   "scripts": {
     "android": "npm run android -w apps/app",
     "ios": "npm run ios -w apps/app",
+    "web": "npm run web -w apps/app",
     "start": "npm start -w apps/app",
     "test": "jest"
   },
   "dependencies": {
     "@apollo/client": "^4.2.1",
+    "@expo/metro-runtime": "^56.0.13",
     "@hookform/resolvers": "^5.4.0",
     "@react-native-firebase/app": "^24.0.0",
     "@react-native-firebase/messaging": "^24.0.0",
@@ -32,6 +34,7 @@
     "expo-updates": "^56.0.17",
     "graphql": "^16.14.1",
     "react": "19.2.3",
+    "react-dom": "^19.2.7",
     "react-hook-form": "^7.77.0",
     "react-native": "0.85.3",
     "react-native-config": "^1.6.1",
@@ -42,6 +45,7 @@
     "react-native-reanimated": "^4.4.0",
     "react-native-safe-area-context": "^5.5.2",
     "react-native-screens": "^4.25.2",
+    "react-native-web": "^0.21.2",
     "react-native-worklets": "^0.9.1",
     "react-redux": "^9.3.0",
     "rxjs": "^7.8.2",
