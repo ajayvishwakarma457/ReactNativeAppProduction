@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator, NativeModules } from 'react-native';
 import { FlashList } from '@shopify/flash-list';
 import { Image } from 'expo-image';
 import { useTheme } from '@app/shared/context/ThemeContext';
@@ -11,6 +11,11 @@ import { PostCard } from '../components/organisms/PostCard';
 
 interface HomeScreenProps {
   navigation: any;
+}
+
+// Global declaration for JSI function
+declare global {
+  var nativeCalculateFibonacci: ((n: number) => number) | undefined;
 }
 
 export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
@@ -27,6 +32,22 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
   const dispatch = useAppDispatch();
   const likedPosts = useAppSelector((state: RootState) => state.counter.likedPosts);
   const likesCount = useAppSelector((state: RootState) => state.counter.value);
+
+  // Invoke C++ JSI high-performance calculation
+  const fibonacciResult = (() => {
+    try {
+      const { FastMathModule } = NativeModules;
+      if (FastMathModule) {
+        FastMathModule.install();
+      }
+      if (typeof global.nativeCalculateFibonacci === 'function') {
+        return String(global.nativeCalculateFibonacci(40));
+      }
+    } catch (e) {
+      console.warn('[JSI FastMath Error]', e);
+    }
+    return 'N/A';
+  })();
 
   const handlePress = useCallback((item: any) => {
     navigation.navigate('Details', { itemId: item.id.toString(), title: item.title, desc: item.body });
@@ -55,7 +76,10 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
           <View style={{ flex: 1, marginRight: 10 }}>
             <Text style={[styles.headerTitle, { color: theme.text }]}>Welcome to NativeApp</Text>
-            <Text style={[styles.headerSubtitle, { color: theme.textMuted }]}>API Cache & State powered by Redux + RTK Query.</Text>
+            <Text style={[styles.headerSubtitle, { color: theme.textMuted }]}>
+              API Cache & State powered by Redux + RTK Query.{"\n"}
+              🏎️ C++ JSI Math (Fib40): {fibonacciResult}
+            </Text>
           </View>
           <View style={{ backgroundColor: theme.primary + '15', borderColor: theme.primary, borderWidth: 1, borderRadius: 12, paddingVertical: 8, paddingHorizontal: 12, alignItems: 'center' }}>
             <Text style={{ fontSize: 18, fontWeight: '800', color: theme.primary }}>⭐ {likesCount}</Text>
