@@ -19,5 +19,7 @@ export interface DrawerParamList extends ParamListBase {
   APIsPlayground: undefined;
   TurboModulePlayground: undefined;
   CodeReviewRFCs: undefined;
+  MentoringJuniorDevs: undefined;
 }
+
 

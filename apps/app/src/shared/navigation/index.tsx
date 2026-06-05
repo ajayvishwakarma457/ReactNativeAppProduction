@@ -19,6 +19,7 @@ import { PermissionsPlaygroundScreen } from '../../permissions/screens/Permissio
 import { APIsPlaygroundScreen } from '../../apisPlayground/screens/APIsPlaygroundScreen';
 import { TurboModuleScreen } from '../../apisPlayground/screens/TurboModuleScreen';
 import { CodeReviewRFCsScreen } from '../screens/CodeReviewRFCsScreen';
+import { MentoringJuniorDevsScreen } from '../screens/MentoringJuniorDevsScreen';
 
 
 const Stack = createNativeStackNavigator<HomeStackParamList>();
@@ -129,7 +130,9 @@ export function RootNavigator() {
       <Drawer.Screen name="APIsPlayground" component={APIsPlaygroundScreen} options={{ title: 'APIs & Networking', drawerLabel: 'APIs Playground' }} />
       <Drawer.Screen name="TurboModulePlayground" component={TurboModuleScreen} options={{ title: 'Turbo Module Spec', drawerLabel: 'Turbo Module' }} />
       <Drawer.Screen name="CodeReviewRFCs" component={CodeReviewRFCsScreen} options={{ title: 'Code Review & RFCs', drawerLabel: 'Code Review & RFCs' }} />
+      <Drawer.Screen name="MentoringJuniorDevs" component={MentoringJuniorDevsScreen} options={{ title: 'Mentoring Junior Devs', drawerLabel: 'Mentoring Junior Devs' }} />
     </Drawer.Navigator>
+
 
   );
 }
