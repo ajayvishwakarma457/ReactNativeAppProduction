@@ -1,4 +1,4 @@
-import { HostComponent, ViewProps } from 'react-native';
+import { ViewProps } from 'react-native';
 import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent';
 
 export interface CenteredTextProps extends ViewProps {
@@ -6,6 +6,4 @@ export interface CenteredTextProps extends ViewProps {
   textColor?: string;
 }
 
-export default codegenNativeComponent<CenteredTextProps>(
-  'RTNCenteredText'
-) as HostComponent<CenteredTextProps>;
+export default codegenNativeComponent<CenteredTextProps>('RTNCenteredText');

@@ -4,7 +4,7 @@ import { useTheme } from '@app/shared/context/ThemeContext';
 import { AppText } from '@app/shared/components/atoms/AppText';
 import { AppButton } from '@app/shared/components/atoms/AppButton';
 import BatteryStatus from '../../shared/specs/NativeBatteryStatus';
-import RTNCenteredText from '../../shared/specs/CenteredTextNativeComponent';
+import RTNCenteredText from '../../shared/specs/RTNCenteredTextNativeComponent';
 
 export const TurboModuleScreen: React.FC = () => {
   const { theme } = useTheme();
