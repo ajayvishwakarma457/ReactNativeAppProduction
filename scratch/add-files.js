@@ -38,6 +38,7 @@ myProj.parse(function (err) {
   // Add custom Fabric Component files
   myProj.addHeaderFile('App/RTNCenteredText.h', { lastKnownFileType: 'sourcecode.c.h' }, 'App');
   myProj.addSourceFile('App/RTNCenteredText.mm', { lastKnownFileType: 'sourcecode.cpp.objcpp' }, 'App');
+  myProj.addSourceFile('App/RCTAppDependencyProvider+AppCustom.mm', { lastKnownFileType: 'sourcecode.cpp.objcpp' }, 'App');
 
   // Restore original paths
   for (const key in originalPaths) {
@@ -50,5 +51,5 @@ myProj.parse(function (err) {
 
   // Write changes
   fs.writeFileSync(projectPath, myProj.writeSync());
-  console.log('Successfully added custom Turbo Module and Fabric Component files to Xcode project!');
+  console.log('Successfully added custom native files and category to Xcode project!');
 });

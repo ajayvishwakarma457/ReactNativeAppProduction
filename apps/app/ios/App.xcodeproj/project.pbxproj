@@ -20,6 +20,7 @@
 		C6E730B73FCB4D47A04A3F5D /* FastMathJSI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71FBBB6DD7DD476D8A6588DD /* FastMathJSI.cpp */; };
 		DEDF8352AB1025A2CC8A7DB3 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
 		69F4634BE6B348E48898E135 /* RTNCenteredText.mm in Resources */ = {isa = PBXBuildFile; fileRef = 152166C2FA0846A3ABE1172E /* RTNCenteredText.mm */; };
+		C4AE6ED93E0E4F35B5D2B63E /* RCTAppDependencyProvider+AppCustom.mm in Resources */ = {isa = PBXBuildFile; fileRef = A528C0191CC9491E8DE645C4 /* RCTAppDependencyProvider+AppCustom.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		FE1CC7B6651645F796E5D234 /* BatteryStatus.h */ = {isa = PBXFileReference; name = "BatteryStatus.h"; path = "App/BatteryStatus.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 		BBBA07BDF5DC480F91DE6254 /* RTNCenteredText.h */ = {isa = PBXFileReference; name = "RTNCenteredText.h"; path = "App/RTNCenteredText.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 		152166C2FA0846A3ABE1172E /* RTNCenteredText.mm */ = {isa = PBXFileReference; name = "RTNCenteredText.mm"; path = "App/RTNCenteredText.mm"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = sourcecode.cpp.objcpp; explicitFileType = undefined; includeInIndex = 0; };
+		A528C0191CC9491E8DE645C4 /* RCTAppDependencyProvider+AppCustom.mm */ = {isa = PBXFileReference; name = "RCTAppDependencyProvider+AppCustom.mm"; path = "App/RCTAppDependencyProvider+AppCustom.mm"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = sourcecode.cpp.objcpp; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -335,6 +337,7 @@
 				3C4DA56B283D4B1FBB1FD284 /* FastMathModule.mm in Sources */,
 				22AD0FD3003D42EBA0E52852 /* BatteryStatus.mm in Sources */,
 				69F4634BE6B348E48898E135 /* RTNCenteredText.mm in Resources */,
+				C4AE6ED93E0E4F35B5D2B63E /* RCTAppDependencyProvider+AppCustom.mm in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
