@@ -9,7 +9,7 @@
 
 using namespace facebook::react;
 
-@implementation RTNCenteredText {
+@implementation RTNCenteredTextComponentView {
   UILabel *_label;
 }
 

@@ -3,7 +3,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RTNCenteredText : RCTViewComponentView
+@interface RTNCenteredTextComponentView : RCTViewComponentView
 
 @end
 
