@@ -21,7 +21,9 @@ export interface DrawerParamList extends ParamListBase {
   CodeReviewRFCs: undefined;
   MentoringJuniorDevs: undefined;
   CodingStandardsLinting: undefined;
+  PerformanceBudgets: undefined;
 }
+
 
 
 
