@@ -18,6 +18,8 @@ import { HooksPlaygroundScreen } from '../../hooksPlayground/screens/HooksPlaygr
 import { PermissionsPlaygroundScreen } from '../../permissions/screens/PermissionsPlaygroundScreen';
 import { APIsPlaygroundScreen } from '../../apisPlayground/screens/APIsPlaygroundScreen';
 import { TurboModuleScreen } from '../../apisPlayground/screens/TurboModuleScreen';
+import { CodeReviewRFCsScreen } from '../screens/CodeReviewRFCsScreen';
+
 
 const Stack = createNativeStackNavigator<HomeStackParamList>();
 const Tab = createBottomTabNavigator<TabParamList>();
@@ -126,7 +128,9 @@ export function RootNavigator() {
       <Drawer.Screen name="PermissionsPlayground" component={PermissionsPlaygroundScreen} options={{ title: 'Platform Permissions', drawerLabel: 'Permissions Panel' }} />
       <Drawer.Screen name="APIsPlayground" component={APIsPlaygroundScreen} options={{ title: 'APIs & Networking', drawerLabel: 'APIs Playground' }} />
       <Drawer.Screen name="TurboModulePlayground" component={TurboModuleScreen} options={{ title: 'Turbo Module Spec', drawerLabel: 'Turbo Module' }} />
+      <Drawer.Screen name="CodeReviewRFCs" component={CodeReviewRFCsScreen} options={{ title: 'Code Review & RFCs', drawerLabel: 'Code Review & RFCs' }} />
     </Drawer.Navigator>
+
   );
 }
 

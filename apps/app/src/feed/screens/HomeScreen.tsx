@@ -40,8 +40,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
       if (FastMathModule) {
         FastMathModule.install();
       }
-      if (typeof global.nativeCalculateFibonacci === 'function') {
-        return String(global.nativeCalculateFibonacci(40));
+      if (typeof globalThis.nativeCalculateFibonacci === 'function') {
+        return String(globalThis.nativeCalculateFibonacci(40));
       }
     } catch (e) {
       console.warn('[JSI FastMath Error]', e);

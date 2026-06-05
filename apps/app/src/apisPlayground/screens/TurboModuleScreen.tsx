@@ -31,7 +31,7 @@ export const TurboModuleScreen: React.FC = () => {
         <AppText variant="bold" style={styles.title}>
           ⚡ Turbo Module Spec (New Architecture)
         </AppText>
-        <AppText variant="standard" style={[styles.subtitle, { color: theme.textMuted }]}>
+        <AppText variant="subtitle" style={[styles.subtitle, { color: theme.textMuted }]}>
           This screen demonstrates a custom native module communicating synchronously over the JavaScript Interface (JSI) with type safety via React Native Codegen.
         </AppText>
 
@@ -41,19 +41,19 @@ export const TurboModuleScreen: React.FC = () => {
           <View style={styles.statusContainer}>
             <View style={styles.row}>
               <AppText variant="bold">Battery Level:</AppText>
-              <AppText variant="standard" style={{ color: theme.primary, fontWeight: '700' }}>
+              <AppText variant="body" style={{ color: theme.primary, fontWeight: '700' }}>
                 {status.level.toFixed(0)}%
               </AppText>
             </View>
             <View style={styles.row}>
               <AppText variant="bold">Charging State:</AppText>
-              <AppText variant="standard" style={{ color: theme.primary, fontWeight: '700' }}>
+              <AppText variant="body" style={{ color: theme.primary, fontWeight: '700' }}>
                 {status.isCharging ? '🔌 Charging' : '🔋 Discharging'}
               </AppText>
             </View>
           </View>
         ) : (
-          <AppText variant="standard" style={[styles.placeholder, { color: theme.textMuted }]}>
+          <AppText variant="body" style={[styles.placeholder, { color: theme.textMuted }]}>
             No battery status retrieved.
           </AppText>
         )}
