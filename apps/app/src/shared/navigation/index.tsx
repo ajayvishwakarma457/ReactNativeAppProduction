@@ -20,6 +20,7 @@ import { APIsPlaygroundScreen } from '../../apisPlayground/screens/APIsPlaygroun
 import { TurboModuleScreen } from '../../apisPlayground/screens/TurboModuleScreen';
 import { CodeReviewRFCsScreen } from '../screens/CodeReviewRFCsScreen';
 import { MentoringJuniorDevsScreen } from '../screens/MentoringJuniorDevsScreen';
+import { CodingStandardsLintingScreen } from '../screens/CodingStandardsLintingScreen';
 
 
 const Stack = createNativeStackNavigator<HomeStackParamList>();
@@ -131,7 +132,9 @@ export function RootNavigator() {
       <Drawer.Screen name="TurboModulePlayground" component={TurboModuleScreen} options={{ title: 'Turbo Module Spec', drawerLabel: 'Turbo Module' }} />
       <Drawer.Screen name="CodeReviewRFCs" component={CodeReviewRFCsScreen} options={{ title: 'Code Review & RFCs', drawerLabel: 'Code Review & RFCs' }} />
       <Drawer.Screen name="MentoringJuniorDevs" component={MentoringJuniorDevsScreen} options={{ title: 'Mentoring Junior Devs', drawerLabel: 'Mentoring Junior Devs' }} />
+      <Drawer.Screen name="CodingStandardsLinting" component={CodingStandardsLintingScreen} options={{ title: 'Coding Standards & Linting', drawerLabel: 'Coding Standards & Linting' }} />
     </Drawer.Navigator>
+
 
 
   );
